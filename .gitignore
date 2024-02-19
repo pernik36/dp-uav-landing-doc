@@ -8,12 +8,12 @@ main.glo
 main.ilg
 main.ist
 main.lof
-main.log
+*.log
 main.lot
 main.out
 main.run.xml
 main.synctex.gz
-main.te~
+*.te~
 main.toc
 img/*-eps-converted-to.pdf
 .vscode
