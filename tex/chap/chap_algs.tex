@@ -51,13 +51,13 @@
             \mathbf{x}_k &= \begin{bmatrix}
                 x_k \\ \dot x_k \\ y_k \\ \dot y_k \\ z_k \\ \dot z_k \\ \psi_k \\ \dot\psi_k
             \end{bmatrix}, \quad \mathbf{F} = \begin{bmatrix}
-                1 & \delta t & 0 &        0 & 0 & 0        & 0 & 0 \\
+                1 & \Delta t & 0 &        0 & 0 & 0        & 0 & 0 \\
                 0 & 1        & 0 &        0 & 0 & 0        & 0 & 0 \\
-                0 & 0        & 1 & \delta t & 0 & 0        & 0 & 0 \\
+                0 & 0        & 1 & \Delta t & 0 & 0        & 0 & 0 \\
                 0 & 0        & 0 & 1        & 0 & 0        & 0 & 0 \\
-                0 & 0        & 0 & 0        & 1 & \delta t & 0 & 0 \\
+                0 & 0        & 0 & 0        & 1 & \Delta t & 0 & 0 \\
                 0 & 0        & 0 & 0        & 0 & 1        & 0 & 0 \\
-                0 & 0        & 0 & 0        & 0 & 0        & 1 & \delta t\\
+                0 & 0        & 0 & 0        & 0 & 0        & 1 & \Delta t\\
                 0 & 0        & 0 & 0        & 0 & 0        & 0 & 1
             \end{bmatrix}, \quad \\
             \mathbf{B} &= \begin{bmatrix}
@@ -89,7 +89,7 @@
             \centering
             \begin{tikzpicture}
                 \begin{axis}[
-                  view={45}{23},
+                  view={42}{23},
                   axis lines=center,
                   width=15cm,height=12cm,
                   xtick={-1,1,2,3},ytick={-1,1,2,3},ztick={-1,5,10},
@@ -116,8 +116,8 @@
                 \addplot3 [] coordinates {(1.0894427190999916, 0.32111456180001685, 5.0) (0.9105572809000084, 0.6788854381999831, 5.0)};
                 \addplot3 [only marks,mark=halfsquare*,mark size = 1.5pt] coordinates {(1,0.5,5)};
 
-                \addplot3 [gray, dotted] coordinates {(1.174574312188794, 0.587287156094397, 0) (0.8254256878112061, 0.41271284390560303, 0)};
-                \addplot3 [gray, dotted] coordinates {(1.0894427190999916, 0.32111456180001685, 0) (0.9105572809000084, 0.6788854381999831, 0)};
+                \addplot3 [gray, densely dotted, line width=0.25mm] coordinates {(1.174574312188794, 0.587287156094397, 0) (0.8254256878112061, 0.41271284390560303, 0)};
+                \addplot3 [gray, densely dotted, line width=0.25mm] coordinates {(1.0894427190999916, 0.32111456180001685, 0) (0.9105572809000084, 0.6788854381999831, 0)};
                 
                 % label points
                 \node [above right] at (axis cs:1,0.5,5) {\acrshort{uav}};
@@ -125,9 +125,14 @@
                 \node [align=center] (plosinatext) at ([xshift=1.5cm,yshift=-1.8cm]O) {Plošina};
                 \draw [shorten <=.1cm,stealth-,gray] (O) to [out=-30,in=160] (plosinatext.west);
 
-                \node [inner sep=2pt,outer sep=0pt] (A) at (axis cs:3,1.5,5) {};
-                \node [inner sep=2pt,outer sep=0pt] (B) at (axis cs:2,1,5) {};
+                \node [inner sep=0pt,outer sep=0pt] (A) at (axis cs:3,1.5,5) {};
+                \node [inner sep=0pt,outer sep=0pt] (B) at (axis cs:2,1,5) {};
+
                 \draw [-stealth] (A) -- (B) node [midway, above, sloped] {směr větru};
+                \addplot3 [lightgray, densely dotted] coordinates {(3,1.5,5) (3,1.5,0)};
+                \addplot3 [lightgray, densely dotted] coordinates {(2,1,5) (2,1,0)};
+                \addplot3 [lightgray, densely dotted] coordinates {(2,1,5) (0,0,5)};
+
                 \end{axis}
                 \end{tikzpicture}
             \caption[Přistávání po skloněné přímce]{Přistávání po skloněné přímce (červeně). Letoun je nakloněný proti větru, čímž ho překonává a zároveň kamerou míří na střed plošiny, která je tak v zorném poli i za přítomnosti poruch.}
