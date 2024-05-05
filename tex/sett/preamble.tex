@@ -44,7 +44,7 @@ hidelinks,
 \usepackage{lmodern} 		% Font family
 
 % Use the bibtex backend with the authoryear citation style (which resembles APA) (citestyle=alphabetic)
-\usepackage[backend=bibtex,style=numeric,citestyle=authoryear-comp,natbib=true,sorting=ynt]{biblatex} 
+\usepackage[backend=bibtex,style=numeric,citestyle=authoryear-comp,natbib=true,sorting=ynt,block=ragged]{biblatex} 
 \addbibresource{bib/thesis_bibliography.bib} 				% The filename of the bibliography
 
 % Required to generate language-dependent quotes in the bibliography
@@ -90,7 +90,7 @@ hidelinks,
 \pgfplotsset{compat=1.8}
 
 \usepackage{listofitems} % for \readlist to create arrays
-\usetikzlibrary{positioning, fit, arrows.meta, shapes, babel} % for arrow size
+\usetikzlibrary{positioning, fit, arrows.meta, shapes, babel, shapes.geometric} % for arrow size
 \usepackage[outline]{contour} % glow around text
 \contourlength{1.4pt}
 
@@ -116,6 +116,8 @@ hidelinks,
   node 3/.style={node out},
 }
 \def\nstyle{int(\lay<\Nnodlen?min(2,\lay):3)} % map layer number onto 1, 2, or 3
+\usepackage{tikzit}
+\input{img/style.tikzstyles}
 
 \newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$}
 
@@ -191,7 +193,7 @@ hidelinks,
 
 \def\xstrut{\rule[-2ex]{0pt}{5ex}}
 
-\usepackage[acronym]{glossaries}
+\usepackage[automake,acronym]{glossaries}
 
 \renewcommand*{\acronymname}{Seznam zkratek}
 

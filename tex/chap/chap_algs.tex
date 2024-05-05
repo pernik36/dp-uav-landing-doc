@@ -1,4 +1,4 @@
-\chapter{Metody přistávání}
+\chapter{Metody přistávání} \label{chap:algs}
     Součástí této práce je návrh systému pro simulaci přistání bezpilotního letounu na plošině, který umožňuje implementovat libovolnou metodu navádění letounu na plošinu a jeho dosednutí tak, aby bylo možné různé metody vzájemně porovnat z různých hledisek a za různých podmínek a případně tak stanovit, za jakých okolností je vhodné použít daný přístup. V této kapitole jsou popsány metody, které byly implementovány, simulovány a následně porovnány mezi sebou (o průběhu simulace, porovnání a výsledcích dále pojednává \cref{chap:eval}). Všechny 4 metody mají společný základ, na kterém postupně staví s využitím dalších dílčích stavebních bloků a to samostatně nebo v jejich kombinaci.
 
     \section{Obecné vlastnosti metod} \label{sec:generalalg}
@@ -19,7 +19,7 @@
         \end{bmatrix}; \begin{bmatrix}
             \sigma_v^2 & 0\\
             0          & \sigma_\varsigma^2
-        \end{bmatrix}\right)$$ filtrovaným lineárním systémem 1. řádu s časovou konstantou $\tau = $. %TODO: doplnit časovou konstantu.
+        \end{bmatrix}\right)$$ filtrovaným dolní propustí 1. řádu s časovou konstantou $\tau_v = 1{,}59$ pro rychlost a $\tau_\phi = 4{,}77$ pro směr.
         Parametry normální rozdělení $v, \varsigma, \sigma_v$ a $\varsigma$ jsou voleny uživatelem systému pro každé přistání.
         \item Přistávací plošina je částečně zastíněná, podíl zastíněné části je $p_s$ a úhel mezi hranou stínu a severo-jižním směrem je $\theta$.
         \item Je známa přibližná geografická poloha plošiny.
