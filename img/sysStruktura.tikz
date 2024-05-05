@@ -1,0 +1,92 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (15) at (-13, -4) {};
+		\node [style=none] (22) at (-13, 8) {};
+		\node [style=none] (29) at (-7.5, -4) {};
+		\node [style=none] (30) at (-7.5, 8) {};
+		\node [style=vlastni] (0) at (-5, 0) {GUI};
+		\node [style=soubor, label=mise.yaml] (1) at (5, 10) {};
+		\node [style=soubor, label=experimenty.yaml] (2) at (0, 10) {};
+		\node [style=soubor, label=config.yaml] (3) at (-5, 10) {};
+		\node [style=soubor, label=svet.sdf] (4) at (11, 0) {};
+		\node [style=vlastni] (5) at (5, 0) {Mise};
+		\node [style=cizi] (6) at (5, -8) {Let. SW};
+		\node [style=cizi] (7) at (5, -16) {Sim.};
+		\node [style=soubor, label=model.sdf] (8) at (14.75, 10) {};
+		\node [style=vlastni] (9) at (0, 4) {Exp.};
+		\node [style=soubor, label=plosina.sdf] (10) at (11, 10) {};
+		\node [style=vlastni] (11) at (-5, -8) {Alg.};
+		\node [style=vlastni] (12) at (-5, -16) {Kamera};
+		\node [style=vlastni] (13) at (0, -12) {Hodiny};
+		\node [style=none] (14) at (16.75, -4) {};
+		\node [style=soubor, label={below:vysledky.yaml}] (16) at (-10.5, 5) {};
+		\node [style=cizi] (17) at (-11, -16) {Detektor};
+		\node [style=cizi] (18) at (-10.5, 1.25) {\v Zive};
+		\node [style=none] (19) at (-11, -0.5) {};
+		\node [style=none] (20) at (-10, -0.5) {};
+		\node [style=none] (21) at (-10.5, -0.5) {};
+		\node [style=none] (23) at (16.75, 8) {};
+		\node [style=none] (25) at (-3, 8) {};
+		\node [style=none] (26) at (-3, 12) {};
+		\node [style=none] (27) at (8, 8) {};
+		\node [style=none] (28) at (8, 12) {};
+		\node [style=none] (31) at (16.75, 12) {};
+		\node [style=none] (32) at (-13, 12) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=blokvystup] (22.center)
+			 to (30.center)
+			 to (29.center)
+			 to (15.center)
+			 to cycle;
+		\draw [style=blokvstup] (22.center)
+			 to (23.center)
+			 to (31.center)
+			 to (32.center)
+			 to cycle;
+		\draw [style=blokvystup] (25.center)
+			 to (26.center)
+			 to (28.center)
+			 to cycle;
+		\draw [style=souborVystup] (3) to (0);
+		\draw [style=vystup] (0) to node [above, sloped, pos=0.75] {def.} (5);
+		\draw [style=souborVystup] (5) to node [above, sloped, align=center] {polohy,\\podm\'inky} (4);
+		\draw [style=vystup, bend right=15] (6) to node [below, sloped] {aktu\'atory} (7);
+		\draw [style=souborVystup, in=30, out=-90, looseness=0.75] (4) to (7);
+		\draw [style=souborVystup, in=0, out=-90, looseness=0.75] (8) to (7);
+		\draw [style=vystup, bend left=15] (0) to node [above, sloped] {def.} (9);
+		\draw [style=vystup, bend left=15] (9) to node [below, sloped] {stav} (0);
+		\draw [style=souborVystup] (10) to (4);
+		\draw [style=souborVystup, bend right=15] (3) to (11);
+		\draw [style=vystup] (7) to node [above, sloped] {obraz} (12);
+		\draw [style=vystup] (7) to node [above, sloped] {\v cas} (13);
+		\draw [style=vystup, bend left=15] (11) to node [above, sloped] {doba} (13);
+		\draw [style=vystup, bend left=15] (13) to node [below, sloped] {vypr\v sen\'i} (11);
+		\draw [style=vystup, bend left=15] (12) to node [below, sloped] {poloha} (11);
+		\draw [style=vystup, bend right=15] (7) to node [below, sloped] {senzory} (6);
+		\draw [style=souborinout] (1) to (5);
+		\draw [style=souborinout] (2) to (9);
+		\draw [style=oddelovac] (15.center) to node [below, pos=0.08] {Simulace} (14.center);
+		\draw [style=souborVystup, in=360, out=165] (9) to (16);
+		\draw [style=vystup, bend right=15] (11) to node [below, sloped] {v\'ysledek} (9);
+		\draw [style=vystup, bend left=345] (12) to node [above, sloped] {obraz} (17);
+		\draw [style=vystup, bend right=15] (17) to node [below, sloped, align=center] {poloha,\\ozna\v cen\'y obraz} (12);
+		\draw [style=vystup, bend left=15] (11) to node [above, sloped] {\v rizeni} (6);
+		\draw [style=vystup] (6) to node [below, sloped] {senzory} (11);
+		\draw [style=vystup, in=0, out=150] (0) to (18);
+		\draw (19.center)
+			 to (21.center)
+			 to (18);
+		\draw (20.center)
+			 to (21.center)
+			 to (18);
+		\draw [style=oddelovac] (22.center) to node [above, pos=0.15] {\footnotesize{Vstup}} (23.center);
+		\draw [draw=none] (22.center) to node [above, pos=0.52] {\footnotesize{Vstup/V\'ystup}} (23.center);
+		\draw [draw=none] (22.center) to node [above, pos=0.85] {\footnotesize{Vstup}} (23.center);
+		\draw [style=oddelovac] (27.center) to (28.center);
+		\draw [style=oddelovac] (25.center) to (26.center);
+		\draw [style=oddelovac] (29.center) to node [above, sloped, pos=0.52] {\footnotesize{V\'ystup}} (30.center);
+		\draw [style=vystup] (11) to node [below, sloped, pos=0.7] {stav} (0);
+		\draw [style=vystup] (5) to (6);
+	\end{pgfonlayer}
+\end{tikzpicture}
