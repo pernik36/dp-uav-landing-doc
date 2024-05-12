@@ -1,0 +1,19 @@
+\begin{tikzpicture}[execute at end picture={
+    % \draw (current bounding box.south west)
+    %     grid [step=0.5cm] (current bounding box.north east);
+}]
+    \node[inner sep=0pt, above right] (screen) at (0,0) {\includegraphics[width=\textwidth]{gui/mise.png}};
+
+    \node[draw, above right, minimum height=4.68cm, minimum width=4.68cm, color=red, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={red}]right:2},pin distance=1.55cm, pin edge={red}]83:Mapa}] (mapa) at (0.25,2.5) {};
+
+    \node[draw, below right, minimum height=0.43cm, minimum width=4.32cm, color=purple, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={red}]left:7},pin distance=3cm, pin edge={red}]below:Výběr metody přistávání}] (alg) at (5.05,2.4) {};
+    \node[draw, above right, minimum height=1.35cm, minimum width=4.32cm, color=magenta, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={magenta}]left:6},pin distance=3cm, pin edge={magenta}]260:Vlastnosti plošiny}] (plosina) at (5.05,2.45) {};
+    \node[draw, above right, minimum height=1.33cm, minimum width=4.32cm, color=cyan, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={cyan}]left:5},pin distance=4cm, pin edge={cyan}]280:Nastavení větru}] (vitr) at (5.05,3.87) {};
+    \node[draw, above right, minimum height=0.95cm, minimum width=4.32cm, color=blue, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={blue}]left:3},pin distance=2.3cm, pin edge={blue}]105:Umístění plošiny}] (plosinaPoloha) at (5.05,6.25) {};
+    \node[draw, above right, minimum height=0.95cm, minimum width=4.32cm, color=orange, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={orange}]above:4},pin distance=2.57cm, pin edge={orange}]88:Umístění letounu}] (uav) at (5.05,5.25) {};
+
+    \node[draw, above right, minimum height=3.65cm, minimum width=5.15cm, color=red, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={red}]left:9},pin distance=3.5cm, pin edge={red}]below:Uložené mise}] (mise) at (9.47,2.45) {};
+    \node[draw, above right, minimum height=1cm, minimum width=5.15cm, color=green, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={green}]left:8},pin distance=1.58cm, pin edge={green}]above:Práce s misí}] (tlacitka) at (9.47,6.2) {};
+
+    \node[draw, above right, minimum height=0.47cm, minimum width=2.77cm, color=green, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={green}]above:1},pin distance=1cm, pin edge={green}]above:Výběr obrazovky}] (zalozky) at (0.06,7.25) {};
+\end{tikzpicture}

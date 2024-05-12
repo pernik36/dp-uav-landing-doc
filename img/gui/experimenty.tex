@@ -1,0 +1,13 @@
+\begin{tikzpicture}[execute at end picture={
+    % \draw (current bounding box.south west)
+    %     grid [step=0.5cm] (current bounding box.north east);
+}]
+    \node[inner sep=0pt, above right] (screen) at (0,0) {\includegraphics[width=\textwidth]{gui/experimenty.png}};
+
+    \node[draw, above right, minimum height=2.5cm, minimum width=7.2cm, color=red, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={red}]left:2},pin distance=1.57cm, pin edge={red}]75:Správa experimentů}] (exp) at (0.20,4.7) {};
+
+    \node[draw, above right, minimum height=3.6cm, minimum width=14.5cm, color=cyan, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={cyan}]left:4},pin distance=1.2cm, pin edge={cyan}]below:Definice experimentu}] (grafy) at (0.2,0.6) {};
+    \node[draw, above right, minimum height=3cm, minimum width=7.15cm, color=orange, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={orange}]left:3},pin distance=1.43cm, pin edge={orange}]above:Výběr misí}] (alg) at (7.55,4.3) {};
+
+    \node[draw, above right, minimum height=0.47cm, minimum width=2.77cm, color=green, line width=1pt, pin={[pin={[pin distance=0cm,draw,circle,node font=\tiny,pin edge={green}]above:1},pin distance=1cm, pin edge={green}]above:Výběr obrazovky}] (zalozky) at (0.06,7.25) {};
+\end{tikzpicture}

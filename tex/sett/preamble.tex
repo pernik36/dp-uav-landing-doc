@@ -175,6 +175,14 @@ hidelinks,
 \def\l@figure{\@dottedtocline{1}{1.5em}{3em}}
 \makeatother
 
+\makeatletter
+\renewcommand\paragraph
+  {%
+    \@startsection{paragraph}{4}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{-1ex}
+      {\normalfont\normalsize\bfseries}
+  }
+\makeatother
+
 \usepackage{pdfpages}
 
 \usepackage[most]{tcolorbox}
@@ -186,6 +194,9 @@ hidelinks,
 \usepackage[useregional,showseconds=false]{datetime2}
 
 \usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{bigstrut}
+\renewcommand{\arraystretch}{1.2} % more space between the rows
 
 \usepackage{array} % for defining a new column type
 \usepackage{varwidth} %for the varwidth minipage environment
@@ -208,3 +219,11 @@ hidelinks,
 \preto\tabular{\shorthandoff{-}}
 
 \usepackage{afterpage}
+
+\DeclareRobustCommand{\kolecko}[1]{%
+	\begin{tikzpicture}[baseline=-1mm]
+		\node [draw,circle,node font=\tiny] {#1};
+	\end{tikzpicture}%
+}
+
+\usepackage{keystroke}

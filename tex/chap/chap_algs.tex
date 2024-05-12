@@ -10,17 +10,17 @@
         \item Letoun se vznáší ve vzduchu a je skoro\footnote[1]{Až na drobné nuance způsobené chybami měření palubních senzorů a náhodnými vlivy prostředí.} v klidu.
         \item Je znám odhad polohy letounu pomocí \acrshort{gps} a \acrshort{imu} je správně kalibrovaná.
         \item Letoun má dostatek energie pro přelet nad plošinu a následné přistání za daných přírodních podmínek.
-        \item Okamžitá rychlost $v_o$ a směr větru $\varsigma_o$ jsou náhodné s normálním rozdělením $$\begin{bmatrix}
+        \item Okamžitá rychlost $v_o$ a směr větru $\phi_o$ jsou náhodné s normálním rozdělením $$\begin{bmatrix}
             v_o\\
-            \varsigma_o
+            \phi_o
         \end{bmatrix} = \mathcal{N}\left(\begin{bmatrix}
             v\\
-            \varsigma
+            \phi
         \end{bmatrix}; \begin{bmatrix}
             \sigma_v^2 & 0\\
-            0          & \sigma_\varsigma^2
+            0          & \sigma_\phi^2
         \end{bmatrix}\right)$$ filtrovaným dolní propustí 1. řádu s časovou konstantou $\tau_v = 1{,}59$ pro rychlost a $\tau_\phi = 4{,}77$ pro směr.
-        Parametry normální rozdělení $v, \varsigma, \sigma_v$ a $\varsigma$ jsou voleny uživatelem systému pro každé přistání.
+        Parametry normální rozdělení $v, \phi, \sigma_v$ a $\phi$ jsou voleny uživatelem systému pro každé přistání.
         \item Přistávací plošina je částečně zastíněná, podíl zastíněné části je $p_s$ a úhel mezi hranou stínu a severo-jižním směrem je $\theta$.
         \item Je známa přibližná geografická poloha plošiny.
     \end{enumerate}
@@ -41,7 +41,7 @@
         \refskl{eq:vz}{Vztah} byl tímto způsobem stanoven, aby funkce rychlosti byla hladká a v případě odchylky ji bylo možné korigovat před tím, než fiduciární značka opustí zorné pole kamery a nebude tak možné dále odhadovat polohu plošiny. Pokud by k tomu i tak došlo (např. vlivem silného poryvu větru), dron bude po omezenou dobu (max. 50 snímků bez tagu) stoupat konstantní rychlostí danou v konfiguračním souboru (výchozí hodnota je $v_z=0{,}3~\mathrm{m/s}^2$) a čekat na snímek z kamery, který by obsahoval tag. Nedojde-li k tomu včas, pokus o přistání se opakuje od přeletu nad plošinu. % TODO: Dodat číslo kroku v diagramu
         
     \section{Přistávání po svislé přímce s využitím Kálmánova filtru} \label{sec:kalmanoffboardpid}
-        Tento algoritmus je přímo odvozený od předchozího, stejně jako u něj je požadována nulová vodorovná vzdálenost dronu a plošiny během přistávání a výpočet svislé rychlosti se také neliší. Rozdíl spočívá v tom, že je sestaven jednoduchý dynamický model letounu, který se následně využívá pro predikci stavu v Kálmánově filtru (princip jeho fungování je popsán v \refskl{sec:kalman}{podkapitole}) a měření polohy získaná z detektoru, která jsou zatížená šumem, se pak filtrují, čímž je dosaženo vyšší přesnosti odhadu polohy. Filtrované odhady se dále používají stejným způsobem jako v předchozí metodě a je podle nich řízena vodorovná rychlost \acrshort{uav}.
+        Tento algoritmus je přímo odvozený od předchozího, stejně jako u něj je požadována nulová vodorovná vzdálenost dronu a plošiny během přistávání a výpočet svislé rychlosti se také neliší. Rozdíl spočívá v tom, že je sestaven jednoduchý dynamický model letounu, který se následně využívá pro predikci stavu v Kálmánově filtru \cite{Kalman1960}, \cite{Kalman1961} a měření polohy získaná z detektoru, která jsou zatížená šumem, se pak filtrují, čímž je dosaženo vyšší přesnosti odhadu polohy. Filtrované odhady se dále používají stejným způsobem jako v předchozí metodě a je podle nich řízena vodorovná rychlost \acrshort{uav}.
 
         Pro tyto účely byl letoun modelován lineárním stochastickým systémem diskrétním v čase jako hmotný bod se směrem rotace, jehož stav je dán polohou v 3D prostoru a rychlostí v příslušných souřadnicích, uvažovala se také rotace $\psi$ kolem osy $z$ úhlová rychlost $\dot \psi$ v též ose. Vstupem systému je požadované zrychlení (nebo úhlové zrychlení) v jednotlivých proměnných, které je dané řízením dronu. Kromě vstupu na systém dále působí šum s normálním rozdělením $\mathbf{w} \sim \mathcal{N}(\mathbf{0},\mathbf{Q})$ s kovarianční maticí $\mathbf{Q}$, která byla určena řádově podobně jako \citeauthor{Kojima2015} (\citeyear{Kojima2015}) a dále podle obvyklých kovariancí chyb \acrshort{imu}. %TODO: Dodat zdroj obvvyklých kovariancí
         Vývoj stavu potom určuje \cref{eq:kalmanx}.
@@ -77,7 +77,7 @@
                 \ddot y \\
                 \ddot z \\
                 \ddot \psi \\
-            \end{bmatrix}, \quad \mathbf{w}_k \sim \mathcal{N}(\mathbf{0},\mathbf{Q}),\quad\mathrm{kde}\nonumber\\
+            \end{bmatrix}, \quad \mathbf{w}_k \sim \mathcal{N}(\mathbf{0},\mathbf{Q}),\quad\mathrm{kde}\nonumber\end{align}\begin{align}
             \mathbf{Q} &= \begin{bmatrix}
                 0 & 0       & 0 & 0       & 0 & 0       & 0 & 0\\
                 0 & 0{,}002 & 0 & 0       & 0 & 0       & 0 & 0\\
