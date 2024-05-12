@@ -20,7 +20,7 @@
             \sigma_v^2 & 0\\
             0          & \sigma_\phi^2
         \end{bmatrix}\right)$$ filtrovaným dolní propustí 1. řádu s časovou konstantou $\tau_v = 1{,}59$ pro rychlost a $\tau_\phi = 4{,}77$ pro směr.
-        Parametry normální rozdělení $v, \phi, \sigma_v$ a $\phi$ jsou voleny uživatelem systému pro každé přistání.
+        Parametry normální rozdělení $v, \phi, \sigma_v$ a $\sigma_\phi$ jsou voleny uživatelem systému pro každé přistání.
         \item Přistávací plošina je částečně zastíněná, podíl zastíněné části je $p_s$ a úhel mezi hranou stínu a severo-jižním směrem je $\theta$.
         \item Je známa přibližná geografická poloha plošiny.
     \end{enumerate}
@@ -43,7 +43,7 @@
     \section{Přistávání po svislé přímce s využitím Kálmánova filtru} \label{sec:kalmanoffboardpid}
         Tento algoritmus je přímo odvozený od předchozího, stejně jako u něj je požadována nulová vodorovná vzdálenost dronu a plošiny během přistávání a výpočet svislé rychlosti se také neliší. Rozdíl spočívá v tom, že je sestaven jednoduchý dynamický model letounu, který se následně využívá pro predikci stavu v Kálmánově filtru \cite{Kalman1960}, \cite{Kalman1961} a měření polohy získaná z detektoru, která jsou zatížená šumem, se pak filtrují, čímž je dosaženo vyšší přesnosti odhadu polohy. Filtrované odhady se dále používají stejným způsobem jako v předchozí metodě a je podle nich řízena vodorovná rychlost \acrshort{uav}.
 
-        Pro tyto účely byl letoun modelován lineárním stochastickým systémem diskrétním v čase jako hmotný bod se směrem rotace, jehož stav je dán polohou v 3D prostoru a rychlostí v příslušných souřadnicích, uvažovala se také rotace $\psi$ kolem osy $z$ úhlová rychlost $\dot \psi$ v též ose. Vstupem systému je požadované zrychlení (nebo úhlové zrychlení) v jednotlivých proměnných, které je dané řízením dronu. Kromě vstupu na systém dále působí šum s normálním rozdělením $\mathbf{w} \sim \mathcal{N}(\mathbf{0},\mathbf{Q})$ s kovarianční maticí $\mathbf{Q}$, která byla určena řádově podobně jako \citeauthor{Kojima2015} (\citeyear{Kojima2015}) a dále podle obvyklých kovariancí chyb \acrshort{imu}. %TODO: Dodat zdroj obvvyklých kovariancí
+        Pro tyto účely byl letoun modelován lineárním stochastickým systémem diskrétním v čase jako hmotný bod se směrem rotace, jehož stav je dán polohou v 3D prostoru a rychlostí v příslušných souřadnicích, uvažovala se také rotace $\psi$ kolem osy $z$ úhlová rychlost $\dot \psi$ v též ose. Vstupem systému je požadované zrychlení (nebo úhlové zrychlení) v jednotlivých proměnných, které je dané řízením dronu. Kromě vstupu na systém dále působí šum s normálním rozdělením $\mathbf{w} \sim \mathcal{N}(\mathbf{0},\mathbf{Q})$ s kovarianční maticí $\mathbf{Q}$, která byla určena řádově podobně jako v \cite{Kojima2015} a dále podle obvyklých kovariancí chyb \acrshort{imu}. %TODO: Dodat zdroj obvvyklých kovariancí
         Vývoj stavu potom určuje \cref{eq:kalmanx}.
 
         Měření z uvedeného modelu jsou přímo 3 polohové souřadnice ($x, y, z$) a rotace $\psi$. I měření je navíc zatíženo náhodnou chybou modelovanou náhodnou veličinou s normálním rozdělením $\mathbf{v} \sim \mathcal{N}(\mathbf{0},\mathbf{R})$. Jeho kovarianční matice $\mathbf{R}$ byla odhadnuta jako výběrová kovarianční matice měření odchylek relativní polohy měřené detektorem od skutečné relativní polohy v simulátoru. Měření $\mathbf z$ potom popisuje \cref{eq:kalmanz}.
