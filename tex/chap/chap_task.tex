@@ -1,2 +1,21 @@
-\chapter{Definice úlohy}
-    
+\chapter{Definice úlohy} \label{chap:task}
+Úloha přistávání na plošině, kterou se bude dále zabývat tato práce, je komplexní a algoritmy, které ji mohou efektivně řešit, v závislosti na implementaci vyžadují celou řadu vstupů. Je také potřeba vymezit specifika letadla, pro nějž bude úloha řešena, jako jsou na něm nesené senzory a způsob jeho ovládání, s čímž také souvisí volba řídicího softwaru (\acrshort{sw}) letadla a volba simulátoru.
+
+\paragraph{Letadlo} použité pro simulaci má 4 rotory uspořádané do tvaru písmene X, vzdálenost mezi dvěma sousedními je asi 37~cm. Mezi jeho senzory patří \begin{itemize}
+    \item inerciální měřicí jednotka (\acrshort{imu}), která zahrnuje akcelerometry a gyroskopy pro odhad polohy a rychlosti v 6 stupních volnosti, 
+    \item přijímač \acrshort{gps} pro odhad absolutní polohy, 
+    \item barometr, který je přesnější pro určování výšky než \acrshort{gps} a 
+    \item kamera namířená kolmo dolů pro sledování prostoru pod dronem a zachycení fiduciárního markeru umístěného na plošině.
+\end{itemize}
+
+\paragraph{Vnější vlivy} jsou takové jevy, které mohou působit na letadlo nebo jeho senzory a tím ovlivnit jeho chování. Tato práce se zabývá působením větru a zastínění plošiny. Naopak se nezabývá vlivem teploty, přestože s klesající teplotou roste vnitřní elektrický odpor akumulátoru \acrshort{uav} (\cite{lipo}), čímž klesá jeho využitelná energie i výkon a snížený maximální výkon může vést ke změněné dynamice letu. Tento vliv nebyl zkoumán, protože ho běžné simulátory přímo nepodporují.
+
+\paragraph{Plošina} je tenká čtvercová deska o straně 70~cm, jejíž povrch tvoří fiduciární marker. Podrobněji o ní a fiduciárních markerech pojednává \cref{chap:pad}.
+
+\paragraph{Simulovaný svět} je tvořen podkladovou plochou s leteckým snímkem travnaté plochy Borského parku v Plzni, na které se v místě specifikovaném uživatelem nachází plošina a na níž je před začátkem simulace umístěn model \acrshort{uav}.
+
+\paragraph{Simulátor} používá simulovaný svět a napodobuje jeho fyzikální podstatu. Implementuje umělé senzory letadla, jejichž naměřené hodnoty předává jeho řídicímu softwaru a přijímá od něj řízení aktuátorů, které simuluje včetně jejich interakce s ostatními prvky světa. Napodobuje vnější podmínky jako vítr a osvětlení, které mohou působit na letadlo a přistávací algoritmus. O výběru použitého simulátoru a dalších podrobnostech pojednává \cref{chap:sims}.
+
+\paragraph{Přistávací metoda} je způsob řízení letadla v simulovaném světě na základě dat z různých jeho senzorů. Jedná se zejména o řízení polohy letadla v průběhu přistávání na základě odhadu polohy vzájemného postavení \acrshort{uav} a plošiny v prostoru podle obrazových dat z kamery, ale také o další podpůrné činnosti, kterými může být například odhad rychlosti a směru větru.
+
+\paragraph{Úlohou} v této práci je potom využití konkrétní přistávací metody k řízení letadla vznášejícího se ve světě simulovaném simulátorem za působení vnějších vlivů v dohledu plošiny tak, aby na ni dosedlo. Při tom se sleduje odchylka od požadované trajektorie, doba trvání, výpočetní náročnost, poloha po dosednutí a další veličiny, podrobnosti o nich jsou v \refskl{chap:eval}{kapitole}.

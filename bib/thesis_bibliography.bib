@@ -91,8 +91,155 @@
   month = sep 
 }
 
+@misc{Xin2022,
+   abstract = {With the rapid development of the UAV, it is widely used in rescue and disaster relief, where autonomous landing is the key technology. Vision-based autonomous landing has the advantages of strong autonomy, low cost, and strong anti-interference ability. Moreover, vision navigation has higher guidance and positioning accuracy combined with other navigation methods, such as GPS/INS. This paper summarizes the research results in the field of vision-based autonomous landing for the UAV, and divides it into static, dynamic, and complex scenarios according to the type of landing destination. Among them, the static scenario includes two categories: cooperative targets and natural landmarks; the dynamic scenario is divided into two categories: vehicle-based autonomous landing and ship-based autonomous landing. The key technologies are summarized, compared, and analyzed and the future development trends are pointed out, which can provide a reference for the research on vision-based autonomous landing of UAVs.},
+   author = {Long Xin and Zimu Tang and Weiqi Gai and Haobo Liu},
+   doi = {10.3390/aerospace9110634},
+   issn = {22264310},
+   issue = {11},
+   journal = {Aerospace},
+   keywords = {UAV,autonomous landing,computer vision},
+   month = {11},
+   publisher = {MDPI},
+   title = {Vision-Based Autonomous Landing for the UAV: A Review},
+   volume = {9},
+   year = {2022},
+}
+
+@article{Rodriguez2019,
+   abstract = {The use of multi-rotor UAVs in industrial and civil applications has been extensively encouraged by the rapid innovation in all the technologies involved. In particular, deep learning techniques for motion control have recently taken a major qualitative step, since the successful application of Deep Q-Learning to the continuous action domain in Atari-like games. Based on these ideas, Deep Deterministic Policy Gradients (DDPG) algorithm was able to provide outstanding results with continuous state and action domains, which are a requirement in most of the robotics-related tasks. In this context, the research community is lacking the integration of realistic simulation systems with the reinforcement learning paradigm, enabling the application of deep reinforcement learning algorithms to the robotics field. In this paper, a versatile Gazebo-based reinforcement learning framework has been designed and validated with a continuous UAV landing task. The UAV landing maneuver on a moving platform has been solved by means of the novel DDPG algorithm, which has been integrated in our reinforcement learning framework. Several experiments have been performed in a wide variety of conditions for both simulated and real flights, demonstrating the generality of the approach. As an indirect result, a powerful work flow for robotics has been validated, where robots can learn in simulation and perform properly in real operation environments. To the best of the authors knowledge, this is the first work that addresses the continuous UAV landing maneuver on a moving platform by means of a state-of-the-art deep reinforcement learning algorithm, trained in simulation and tested in real flights.},
+   author = {Alejandro Rodriguez-Ramos and Carlos Sampedro and Hriday Bavle and Paloma de la Puente and Pascual Campoy},
+   doi = {10.1007/s10846-018-0891-8},
+   issn = {15730409},
+   issue = {1-2},
+   journal = {Journal of Intelligent and Robotic Systems: Theory and Applications},
+   keywords = {Autonomous landing,Continuous control,Deep reinforcement learning,UAV},
+   month = {2},
+   pages = {351-366},
+   publisher = {Springer Netherlands},
+   title = {A Deep Reinforcement Learning Strategy for UAV Autonomous Landing on a Moving Platform},
+   volume = {93},
+   year = {2019},
+}
+
+@article{Kakaletsis2022,
+   abstract = {Recent years have seen an unprecedented spread of Unmanned Aerial Vehicles (UAVs, or "drones"), which are highly useful for both civilian and military applications. Flight safety is a crucial issue in UAV navigation, having to ensure accurate compliance with recently legislated rules and regulations. The emerging use of autonomous drones and UAV swarms raises additional issues, making it necessary to transfuse safety-and regulations-awareness to relevant algorithms and architectures. Computer vision plays a pivotal role in such autonomous functionalities. Although the main aspects of autonomous UAV technologies (e.g., path planning, navigation control, landing control, mapping and localization, target detection/tracking) are already mature and well-covered, ensuring safe flying in the vicinity of crowds, avoidance of passing over persons, or guaranteed emergency landing capabilities in case of malfunctions, are generally treated as an afterthought when designing autonomous UAV platforms for unstructured environments. This fact is reflected in the fragmentary coverage of the above issues in current literature. This overview attempts to remedy this situation, from the point of view of computer vision. It examines the field from multiple aspects, including regulations across the world and relevant current technologies. Finally, since very few attempts have been made so far towards a complete UAV safety flight and landing pipeline, an example computer vision-based UAV flight safety pipeline is introduced, taking into account all issues present in current autonomous drones. The content is relevant to any kind of autonomous drone flight (e.g., for movie/TV production, news-gathering, search and rescue, surveillance, inspection, mapping, wildlife monitoring, crowd monitoring/management), making this a topic of broad interest.},
+   author = {Efstratios Kakaletsis and Charalampos Symeonidis and Maria Tzelepi and Ioannis Mademlis and Anastasios Tefas and Nikos Nikolaidis and Ioannis Pitas},
+   doi = {10.1145/3472288},
+   issn = {15577341},
+   issue = {9},
+   journal = {ACM Computing Surveys},
+   keywords = {UAV flight Safety,crowd/person detection,landing site detection,obstacle avoidance,path planning,semantic mapping},
+   month = {12},
+   note = {Týká se hlavně bezpečnosti, žádné konkrétní algoritmy nepředstavuje},
+   publisher = {Association for Computing Machinery},
+   title = {Computer Vision for Autonomous UAV Flight Safety: An Overview and a Vision-based Safe Landing Pipeline Example},
+   volume = {54},
+   year = {2022},
+}
+
+@article{Saavedra2021,
+   abstract = {Autonomous landing is a capability that is essential to achieve the full potential of multi-rotor drones in many social and industrial applications. The implementation and testing of this capability on physical platforms is risky and resource-intensive; hence, in order to ensure both a sound design process and a safe deployment, simulations are required before implementing a physical prototype. This paper presents the development of a monocular visual system, using a software-in-the-loop methodology, that autonomously and efficiently lands a quadcopter drone on a predefined landing pad, thus reducing the risks of the physical testing stage. In addition to ensuring that the autonomous landing system as a whole fulfils the design requirements using a Gazebo-based simulation, our approach provides a tool for safe parameter tuning and design testing prior to physical implementation. Finally, the proposed monocular vision-only approach to landing pad tracking made it possible to effectively implement the system in an F450 quadcopter drone with the standard computational capabilities of an Odroid XU4 embedded processor.},
+   author = {Miguel Saavedra-Ruiz and Ana Mario Pinto-Vargas and Victor Romero-Cano},
+   month = {8},
+   title = {Monocular visual autonomous landing system for quadcopter drones using software in the loop},
+   url = {http://arxiv.org/abs/2108.06616},
+   year = {2021},
+}
+
+@article{Luo2022,
+   abstract = {A machine learning-based method for the precise landing of an unmanned aerial vehicle on a moving mobile platform is proposed. The proposed approach attempts to predict the mobile platform's future trajectory based on the past states of the mobile platform. To that end, it combines a long short-term memory-based neural network with a Kalman filter. Hence, it aims at combining the advantages of a machine learning method with those of a state estimation method from established control theory. Based on the predicted trajectory, the unmanned aerial vehicle attempts to land precisely on the moving mobile platform. The experiment is conducted in the Gazebo simulation platform with a quadrotor and an omnidirectional mobile robot, and the proposed method is compared with the single-method approaches of using only either the Kalman filter or the machine learning method alone.},
+   author = {Wei Luo and Henrik Ebel and Peter Eberhard},
+   doi = {10.1002/msd2.12036},
+   issn = {27671402},
+   issue = {1},
+   journal = {International Journal of Mechanical System Dynamics},
+   keywords = {Kalman filter,long short-term memory (LSTM),trajectory prediction,unmanned aerial vehicle (UAV)},
+   month = {3},
+   pages = {99-107},
+   publisher = {John Wiley and Sons Inc},
+   title = {An LSTM-based approach to precise landing of a UAV on a moving platform},
+   volume = {2},
+   year = {2022},
+}
+
+@inproceedings{Acuna2018,
+  title = {Vision-Based UAV Landing on a Moving Platform in GPS Denied Environments Using Motion Prediction},
+  url = {http://dx.doi.org/10.1109/LARS/SBR/WRE.2018.00096},
+  DOI = {10.1109/lars/sbr/wre.2018.00096},
+  booktitle = {2018 Latin American Robotic Symposium,  2018 Brazilian Symposium on Robotics (SBR) and 2018 Workshop on Robotics in Education (WRE)},
+  publisher = {IEEE},
+  author = {Acuna,  Raul and Zhang,  Ding and Willert,  Volker},
+  year = {2018}
+}
+
+@article{Acuna2017,
+  doi = {10.48550/ARXIV.1709.04981},
+  url = {https://arxiv.org/abs/1709.04981},
+  author = {Acuna,  Raul and Willert,  Volker},
+  keywords = {Robotics (cs.RO),  FOS: Computer and information sciences,  FOS: Computer and information sciences},
+  title = {Dynamic Markers: UAV landing proof of concept},
+  publisher = {arXiv},
+  year = {2017},
+  copyright = {arXiv.org perpetual,  non-exclusive license}
+}
+
+
+
+
+
+@misc{Hayat2016,
+   abstract = {The days where swarms of unmanned aerial vehicles (UAVs) will occupy our skies are fast approaching due to the introduction of cost-efficient and reliable small aerial vehicles and the increasing demand for use of such vehicles in a plethora of civil applications. Governments and industry alike have been heavily investing in the development of UAVs. As such it is important to understand the characteristics of networks with UAVs to enable the incorporation of multiple, coordinated aerial vehicles into the air traffic in a reliable and safe manner. To this end, this survey reports the characteristics and requirements of UAV networks for envisioned civil applications over the period 2000-2015 from a communications and networking viewpoint. We survey and quantify quality-of-service requirements, network-relevant mission parameters, data requirements, and the minimum data to be transmitted over the network. Furthermore, we elaborate on general networking related requirements such as connectivity, adaptability, safety, privacy, security, and scalability. We also report experimental results from many projects and investigate the suitability of existing communication technologies for supporting reliable aerial networking.},
+   author = {Samira Hayat and Evsen Yanmaz and Raheeb Muzaffar},
+   doi = {10.1109/COMST.2016.2560343},
+   issn = {1553877X},
+   issue = {4},
+   journal = {IEEE Communications Surveys and Tutorials},
+   keywords = {UAVs,aerial networks,communication,cooperative UAVs,delivery of goods,network infrastructure,quality of service,search and rescue,swarms},
+   month = {10},
+   pages = {2624-2661},
+   publisher = {Institute of Electrical and Electronics Engineers Inc.},
+   title = {Survey on Unmanned Aerial Vehicle Networks for Civil Applications: A Communications Viewpoint},
+   volume = {18},
+   year = {2016},
+}
+
+@INPROCEEDINGS{icuas,
+  author={Gautam, Alvika and Sujit, P.B. and Saripalli, Srikanth},
+  booktitle={2014 International Conference on Unmanned Aircraft Systems (ICUAS)}, 
+  title={A survey of autonomous landing techniques for UAVs}, 
+  year={2014},
+  volume={},
+  number={},
+  pages={1210-1218},
+  keywords={Aircraft;Atmospheric modeling;Vehicles;Global Positioning System;Aerospace control;Aerodynamics;Fuzzy logic},
+  doi={10.1109/ICUAS.2014.6842377}}
+
+@techreport{csn310001,
+  author      = {\v CSN 31 0001},
+  institution = {Český normalizační institut},
+  title       = {Letectví a kosmonautika - Terminologie},
+  year        = {2005}
+}
+
+@misc{Shakhatreh2019,
+   abstract = {The use of unmanned aerial vehicles (UAVs) is growing rapidly across many civil application domains, including real-time monitoring, providing wireless coverage, remote sensing, search and rescue, delivery of goods, security and surveillance, precision agriculture, and civil infrastructure inspection. Smart UAVs are the next big revolution in the UAV technology promising to provide new opportunities in different applications, especially in civil infrastructure in terms of reduced risks and lower cost. Civil infrastructure is expected to dominate more than $45 Billion market value of UAV usage. In this paper, we present UAV civil applications and their challenges. We also discuss the current research trends and provide future insights for potential UAV uses. Furthermore, we present the key challenges for UAV civil applications, including charging challenges, collision avoidance and swarming challenges, and networking and security-related challenges. Based on our review of the recent literature, we discuss open research challenges and draw high-level insights on how these challenges might be approached.},
+   author = {Hazim Shakhatreh and Ahmad H. Sawalmeh and Ala Al-Fuqaha and Zuochao Dou and Eyad Almaita and Issa Khalil and Noor Shamsiah Othman and Abdallah Khreishah and Mohsen Guizani},
+   doi = {10.1109/ACCESS.2019.2909530},
+   issn = {21693536},
+   journal = {IEEE Access},
+   keywords = {Civil infrastructure inspection,Delivery of goods,Precision agriculture,Real-time monitoring,Remote sensing,Search and rescue,Security and surveillance,UAVs,Wireless coverage},
+   pages = {48572-48634},
+   publisher = {Institute of Electrical and Electronics Engineers Inc.},
+   title = {Unmanned Aerial Vehicles (UAVs): A Survey on Civil Applications and Key Research Challenges},
+   volume = {7},
+   year = {2019},
+}
+
+@online{px4, title={PX4 Autopilot User Guide}, organization={PX4}, url={https://docs.px4.io/main/en/index.html}, journal={PX4 Guide}, publisher={PX4}, author={Willee, Hamish}, year={2020}, month={Nov}, urldate={2024-05-13}} 
 @online{px4:simulation, title={Simulation}, organization={PX4}, url={https://docs.px4.io/main/en/simulation/}, journal={PX4 Guide}, publisher={PX4}, author={Willee, Hamish}, year={2020}, month={Nov}, urldate={2024-04-29}} 
 @online{ardupilot:simulation, title={Simulation}, organization={ArduPilot}, url={https://ardupilot.org/dev/docs/simulation-2.html}, journal={Simulation - Dev documentation}, publisher={ArduPilot}, author={Willee, Hamish}, year={2016}, month={Mar}, urldate={2024-04-29}} 
+@online{ardupilot, title={Ardupilot Documentation}, organization={ArduPilot}, url={https://ardupilot.org/ardupilot/index.html}, publisher={ArduPilot}, author={Willee, Hamish}, year={2016}, month={Mar}, urldate={2024-05-13}} 
 @online{betaflight:simulation, title={SITL}, author={Betaflight}, organization={Betaflight}, url={https://betaflight.com/docs/development/sitl}, journal={Betaflight}, publisher={Betaflight}, urldate={2024-04-29}, year={2024}} 
 @online{ardupilot:realflight, title={Using SITL with RealFlight}, organization={ArduPilot}, url={https://ardupilot.org/dev/docs/sitl-with-realflight.html}, publisher={ArduPilot}, author={Mackay, Randy}, year={2017}, month={Jun}, urldate={2024-04-30}} 
 @online{realflight, title={RealFlight RC Flight Simulator Software and Accessories}, url={https://www.realflight.com/}, journal={RealFlight}, author={RealFlight}, year={2024}, urldate={2024-04-30}} 
@@ -152,6 +299,29 @@
   urldate         = {2024-05-04},
 }
 
+@online{konfigurace,
+  author          = {Jagannadha Rao Cherukuri and Arvind Padmanabhan},
+  title           = {Quadcopter},
+  year            = {2022},
+  url             = {https://devopedia.org/quadcopter},
+  urldate         = {2024-05-13},
+}
+
+@online{rtk,
+  author          = {Jan Van Sickle and John A. Dutton},
+  title           = {Lesson 8: Real-Time Global Positioning System Surveying},
+  year            = {2023},
+  url             = {https://www.e-education.psu.edu/geog862/node/1845},
+  urldate         = {2024-05-13},
+}
+
+@online{dronSoucasti,
+  author          = {Jiří Maňák},
+  title           = {Jak postavit RC kvadrokoptéru (drona)},
+  year            = {2016},
+  url             = {https://bastlirna.hwkitchen.cz/jak-postavit-rc-kvadrokopteru-drona/},
+  urldate         = {2024-05-13},
+}
 
 @article{Ebeid2018,
   title = {A survey of Open-Source UAV flight controllers and flight simulators},
@@ -168,7 +338,7 @@
 }
 
 @article{lipo,
-author = {Łebkowski, Andrzej},
+author = {\L ebkowski, Andrzej},
 year = {2017},
 month = {05},
 pages = {},
