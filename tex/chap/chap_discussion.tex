@@ -13,8 +13,25 @@
 %         \item Describe a relevant empirical rule
 %     \end{itemize}
 % \end{itemize}
-Poznámky:
-U \refskl{sec:presnostPristavani}{experimentu} by bylo dobré porovnat nejen metody, ale i ladění jejich PID.
-V \refskl{sec:mise}{podkapitole} je řečno, že se nevyužívá nastavení strany plošiny. Proč?
 
-\section{Možnosti reálného nasazení systému}
+% Poznámky:
+% U \refskl{sec:presnostPristavani}{experimentu} by bylo dobré porovnat nejen metody, ale i ladění jejich PID.
+% V \refskl{sec:mise}{podkapitole} je řečno, že se nevyužívá nastavení strany plošiny. Proč?
+
+Jedním z~cílů této práce bylo navrhnout systém pro simulaci přistání \acrshort{uav} na plošině, která byla navržena pro navádění letadla pomocí vidění tak, že ji pokrýval fiduciární marker. Tento způsob navádění byl zvolen kvůli jednoduchosti, kdy nevyžaduje žádný speciální hardware, výhodou je i možnost použití v~uzavřeném prostoru.Z několika možností fiduciárních markerů byl zvolen AprilTag, který svým rekurzivním uspořádáním 2 tagů umožnil větší rozsah vzdáleností, ve kterých mohl být detekován.
+
+Ústřední součástí navrženého systému je simulátor. Před jeho výběrem byla provedena rešerše, která se zabývala podporovanými funkcemi simulátorů, aby mohly být naplněny cíle práce, a letovými řídicími softwary, aby byl zjednodušen případný přenos na reálné letadlo, z~níž jako kandidáti vzešly Gazebo a AirSim. První volba zvítězila kvůli jejímu tradičnímu použití v~podobných úlohách a rozsáhlé komunitě, ale při vývoji systému se ukázalo, že nemá zcela vyspělou dokumentaci, a oživení některých součástí vyžadovalo mnoho neúspěšných pokusů. Spolupráce s~dalšími programovými prostředky je také do jisté míry omezená, v~čemž se při zpětném pohledu zdá být AirSim lepší. Kromě toho má také realističtější renderování, ale nevýhodou je, že jeho vývoj byl přerušen. Na poli letových řídicích \acrshort{sw} připadaly v~úvahu PX4 a ArduPilot, které byly oba podporovány oběma kandidátními simulátory, a byla zvolena PX4 jako profesionálnější možnost, jejíž autoři se přímo podílejí na vývoji používaných komunikační protokolů a byla tak očekávána jejich dobrá podpora.
+
+Byly simulovány 2 vnější vlivy, konkrétně vliv větru v~5 různých třídách rychlosti a proměnlivosti rychlosti i směru a vliv zastínění plošiny. Teplota vzduchu nebyla simulována i přes to, že může mít výrazný vliv na výkon akumulátoru dronu, protože Gazebo tento vliv neumí promítnout a vlastní implementace modelu V~navrženém systému by bylo možné po úpravě simulovat i další vlivy, například kouř nebo mlhu v~prostředí. V~praktické části byly provedeny experimenty, které zjišťovaly, jak tyto vnější vlivy působí na navržené přistávací algoritmy.
+
+Systém pro simulaci, který byl v~této práci představen a implementován, umožňuje kromě simulace přistávání řešit i další obecnější úlohy, protože je pro algoritmy definované jednotné rozhraní a je možné dodat jiný vlastní algoritmus. S~uživatelem systém komunikuje pomocí grafického rozhraní, umožňujícího připravovat mise s~různými parametry, spouštět je samostatně, nebo dávkově spolu s~dalšími, přičemž se jejich výsledky uchovají ve strukturovaných textových souborech. Průběh mise včetně pohledu z~kamery a stavu probíhajícího algoritmu zahrnujícího například aktuální chybu vůči požadované trajektorii je možné sledovat na zvláštní obrazovce v~tomto rozhraní.
+
+Práce se dále zabývala metodami přistávání uvedenými v~související literatuře včetně přistávání na pohyblivých plošinách nebo plošinách s~dynamickými značkami. Pro praktickou část byly navrženy 4 příbuzné metody, které byly podrobeny experimentům za různých podmínek a bylo zaznamenáno jakou mají přesnost přistání, přesnost sledování zvolené trajektorie, úspěšnost, jak dlouho přistání trvá, jaká je jejich výpočetní náročnost a jaký vliv na detekci značek má stín, který překrývá část plošiny.
+
+Z~hlediska přesnosti přistávání mezi implementovanými metodami nebyly velké rozdíly a kvůli vlastnostem simulátoru, ve kterém se uplatňovalo příliš malé tření, byl dron i po přistání snášen dále od středu plošiny. Větší vliv na přesnost přistávání by mohlo mít ladění PID regulátoru s~využitím dynamického modelu letadla a případně i modelu neurčitosti, které kvůli rozsahu nebylo provedeno. Mohlo by se jednat o~důležité rozšíření pro budoucí práci.
+
+Přestože vylepšení základního algoritmu v~podobě skloněné přistávací trajektorie a Kálmánova filtru samostatně vylepšují úspěšnost přistávání i jeho rychlost a v~některých případech vylepšují přesnost přistávání, jejich kombinace v~jedné metodě nepřináší další zlepšení a zejména v~přesnosti je často i horší. Může to být způsobeno tím, že kombinace do smyčky programu přidává další zátěž, čímž se do systému zavede významné dopravní zpoždění a požadavky pro dron kvůli němu opozdí natolik, že to má vliv na dynamiku řízení letadla, protože poruchy nejsou dostatečně rychle odregulovány.
+
+Výhodou pokročilejších metod (zejména těch s~přistáváním po skloněné přímce) bylo to, že jejich řídicí strategie byly schopné i v~čerstvém větru s~poryvy přistát průměrně na \landingRetriesMeanLAPILvitrIV., (bez Kálmánova filtru) resp. \landingRetriesMeanKAPILvitrIV. (s~Kálmánovým filtrem) pokus, což je méně než polovina pokusů, jež průměrně potřebovala metoda, která používala pouze proporcionální regulátor.
+
+%TODO: Zastínění.

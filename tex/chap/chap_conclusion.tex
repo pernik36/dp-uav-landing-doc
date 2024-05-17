@@ -9,3 +9,10 @@
 %     \item Conclusion (one or two main ideas)
 %     \item Outlook (what are you going to do next)  
 % \end{itemize}
+
+V~této diplomové práci byl na základě rešerše simulátorů a metod pro přistávání bezpilotního vícerotorového letadla na plošině navržen a implementován systém pro simulaci, pomocí kterého se simulovaly 4 metody přistávání využívající 3 přístupy v~různých vzájemných kombinacích, jež naváděly \acrshort{uav} podle obrazu fiduciárního markeru o~2 různě velkých souosých vrstvách umístěného na plošině za působení rozličných větrných podmínek nebo stínu zakrývajícího část plošiny. 
+
+Příliš dlouhá doba trvání jednoho kroku algoritmu může mít negativní vliv na jeho dynamické vlastnosti a tím i na přesnost přistání. Ukázalo se, že volba metody nemá příliš velký vliv na přesnost, větší vliv by mohlo mít ladění použitých regulátorů, čímž by bylo vhodné se dále zabývat. Pokročilejší metody významě zvyšují robustnost, protože umožňují přistát na menší počet pokusů i v~silnějším větru, a tím je zvýšena i rychlost přistávání, což zmírňuje rizika spojená s~reálným přistáváním v~mnoha oblastech. Stín má %TODO: jaký?
+vliv pouze na úspěšnost detekce markeru, která je ale i při zastínění dostatečná k~tomu, aby neovlivňovala chod přistávacího algoritmu.
+
+Navržený systém podporuje rychlou iteraci při vývoji nových algoritmů a umožňuje efektivně testovat odlišné metody za různých vnějších podmínek a zachytávat jejich výsledky.

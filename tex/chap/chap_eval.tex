@@ -1,6 +1,6 @@
 \chapter{Experimenty a vyhodnocení} \label{chap:eval}
-  V navrženém systému byly implementovány a odsimulovány 4 vybrané metody přistávání (\cref{chap:algs}), na nichž byly provedeny experimenty popsané v této kapitole, které sloužily primárně ke zjištění rozdílů mezi implementovanými algoritmy podle různých hledisek. Během několikrát opakované simulace byly sledovány určité ukazatele, které byly zaznamenávány a statisticky zpracovány, konkrétní provedení je vždy uvedeno v příslušné podkapitole daného experimentu. Pro provedení experimentů \cref*{sec:presnostPristani,sec:presnostPristavani,sec:uspesnost} bylo zvoleno 5 různých tříd větrných podmínek (bezvětří, slabý vítr, slabý vítr s poryvy, čerstvý vítr, čerstvý vítr s poryvy). Nastavení simulačních parametrů v jednotlivých třídách shrnuje \cref{tab:tridyVetru}.
-  \begin{table}
+  V~navrženém systému byly implementovány a odsimulovány 4 vybrané metody přistávání (\cref{chap:algs}), na nichž byly provedeny experimenty popsané v~této kapitole, které sloužily primárně ke zjištění rozdílů mezi implementovanými algoritmy podle různých hledisek. Během několikrát opakované simulace byly sledovány určité ukazatele, které byly zaznamenávány a statisticky zpracovány, konkrétní provedení je vždy uvedeno v~příslušné podkapitole daného experimentu. Pro provedení experimentů \cref*{sec:presnostPristani,sec:presnostPristavani,sec:uspesnost} bylo zvoleno 5 různých tříd větrných podmínek (bezvětří, slabý vítr, slabý vítr s~poryvy, čerstvý vítr, čerstvý vítr s~poryvy). Nastavení simulačních parametrů v~jednotlivých třídách shrnuje \cref{tab:tridyVetru}.
+  \begin{table}[H]
     \centering
     \begin{tabular}{@{}lllll@{}}
       \hline
@@ -8,24 +8,100 @@
       \hline
       bezvětří & 0     & 0     & 0     & 0 \bigstrut[t]\\
       slabý vítr & 3     & 1     & 105   & 10 \\
-      slabý vítr s poryvy & 3     & 3     & 105   & 20 \\
+      slabý vítr s~poryvy & 3     & 3     & 105   & 20 \\
       čerstvý vítr & 8     & 2     & 105   & 10 \\
-      čerstvý vítr s poryvy & 8     & 4     & 105   & 20 \bigstrut[b]\\
+      čerstvý vítr s~poryvy & 8     & 4     & 105   & 20 \bigstrut[b]\\
       \hline
       \end{tabular}%
-    \caption[Třídy větrných podmínek]{Třídy větrných podmínek a jejich parametry použité při simulaci v některých experimentech.}
+    \caption[Třídy větrných podmínek]{Třídy větrných podmínek a jejich parametry použité při simulaci v~některých experimentech.}
     \label{tab:tridyVetru}
   \end{table}
   \section{Přesnost přistání} \label{sec:presnostPristani}
-    Podstatou tohoto experimentu bylo zjistit, jak přesně \acrshort{uav} dosedne na plošinu, použijí-li se jednotlivé algoritmy. Simulace byla provedena 50x pro každou z 20 dvojic a zaznamenávala se skutečná poloha letounu v simulačním prostředí v okamžiku jeho dosednutí. Během vyhodnocení se porovnávala tato zaznamenaná poloha s polohou plošiny dle definice dané mise. Z rozdílů v souřadnicích $x, y$ a rotaci $\psi$ (kolem osy $z$) byly pro každý z případů vypočteny výběrová střední hodnota a výběrový rozptyl. Shrnutí takto zjištěných výsledků obsahuje \cref{tab:presnostPristani} a v grafické podobě zobrazující vizualizaci střední hodnoty, kovarianční elipsy a každého z přistání přímo na obrázku plošiny \cref{fig:presnostPristani}.
+    \input{tab/results.tex}
+    Podstatou tohoto experimentu bylo zjistit, jak přesně \acrshort{uav} dosedne na plošinu, použijí-li se jednotlivé algoritmy. Simulace byla provedena 50x pro každou z~20 dvojic (třída větru, metoda přistávání) a zaznamenávala se skutečná poloha letadla v~simulačním prostředí v~okamžiku před požadavkem na dosednutí a po uvedení do klidu. Během vyhodnocení se porovnávala tato zaznamenaná poloha s~polohou plošiny dle definice dané mise. Z~rozdílů v~souřadnicích $x, y$ a rotaci $\psi$ (kolem osy $z$) byly pro každý z~20 případů sestrojeny grafy zobrazující průměr chyby, oba extrémy a odhad rozdělení (barevná plocha kolem linie) pro okamžik před dosednutím (\cref{fig:dosednutiViolin}) a po uvedení letadla do klidu (\cref{fig:pristaniViolin}). Vizualizaci střední hodnoty, kovarianční elipsy a každého z~přistání pro 2 příklady přímo na obrázku plošiny ukazuje \cref{fig:presnostPristani}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{img/results/presnostDotyku.pdf}
+      \caption[Chyba před dosednutím]{Chyba polohy a rotace letadla před požadavkem na dosednutí v~závislosti na použité metodě přistávání a třídě větru. Metody jsou označené barevně a třídy větru jsou od sebe odděleny prostorově. Každý graf zobrazuje střední hodnotu, oba extrémy a odhad rozdělení dané chyby.}
+      \label{fig:dosednutiViolin}
+    \end{figure}
+
+    Před dosednutím je odchylka polohy od plošiny v~případě všech algoritmů kromě KAP (odhad polohy s~Kálmánovým filtrem přistávající po skloněné přímce) podobná a to v~řádu nižších jednotek centimetrů v~obou prostorových souřadnicích, kdy nejhorší je s~průměrnou odchylkou \mistoPredPristaniYmeanLAPILvitrIII~m metoda přistávající po skloněné přímce bez Kálmánova filtru v~případě čerstvého větru v~souřadnici $y$. Metoda KAP tuto mez překračuje ve 4 případech, přičemž nejhorší je za čerstvého větru s~výchylkou \mistoPredPristaniYmeanKAPILvitrIII~m. Průměrná odchylka v~úhlu natočení $\psi$ je až na výjimky u~metody KAP za bezvětří a při mírném větru s~poryvy nízká do přibližně 2$^\circ$. Se sílícím větrem a poryvy tato odchylka roste a mezi jednotlivými pokusy jsou větší rozdíly. V~prostorových souřadnicích je patrný vliv rychlosti větru i poryvů zejména na rozdíly mezi pokusy, vliv na samotnou odchylku nelze odlišit od šumu.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{img/results/presnostPristani.pdf}
+      \caption[Chyba přistání]{Chyba polohy a rotace letadla po jeho uvedení do klidu v~závislosti na použité metodě přistávání a třídě větru. Metody jsou označené barevně a třídy větru jsou od sebe odděleny prostorově. Každý graf zobrazuje střední hodnotu, oba extrémy a odhad rozdělení dané chyby.}
+      \label{fig:pristaniViolin}
+    \end{figure}
+
+    Odchylky po uvedení letadla do klidu jsou výrazně větší, protože tření mezi plošinou a letadlem není po dotyku dostatečné ani při nastavení vysokého koeficientu tření obou ploch v~simulátoru a při doběhu motorů před deaktivací je letadlo snášeno ve směru větru po plošině. Výsledkem je zvyšující se polohová odchylka v~1 směru pro rostoucí rychlost větru patrná u~všech metod přistávání. Pro úhlovou odchylku platí zvětšování rozdílů mezi jednotlivými případy přistávání, ale posun v~jednom směru není příliš patrný. Výsledky všech metod jsou srovnatelné, ale metody, které využívají skloněnou trajektorii (\_AP a KAP) mají ve většině případů průměrnou odchylku bližší 0 než ostatní metody, jeden takový případ ukazuje i \cref{fig:presnostPristani}.
+
+    \begin{figure}
+      \centering
+      \begin{subfigure}[b]{0.495\textwidth}
+        \includegraphics[width=\textwidth]{img/results/__P1_vitr2_pristani.pdf}
+        \caption{\_\_P, mírný s~poryvy}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.495\textwidth}
+        \includegraphics[width=\textwidth]{img/results/KAP1_vitr2_pristani.pdf}
+        \caption{KAP, mírný s~poryvy}
+      \end{subfigure}
+      \caption[Příklad porovnání přistání]{Porovnání míst přistání, jejich centroidů a kovariančních elips pro dva příklady algoritmů za mírného větru.}
+      \label{fig:presnostPristani}
+    \end{figure}
+  
   \section{Přesnost přistávání} \label{sec:presnostPristavani}
-    Další experiment zjišťoval přesnost celého přistávacího manévru, kdy během každé ze simulací postupně počítal střední absolutní chybu (\acrshort{mae}) v souřadnicích $x, y$ a rotaci $\psi$ v každém kroku algoritmu vůči jím požadované trajektorii (ve 2 případech přímka kolmo procházející středem plošiny, ve 2 případech skloněná přímka pod stejným úhlem jako v daném větru přistávající dron nasměrovaná proti němu). Stejně jako v předchozím případě byl pokus proveden 50x pro každý prvek kartézského součinu metody přistávání $\times$ třídy větru. \Cref{tab:presnostPristavani} shrnuje výběrové střední hodnoty a výběrové rozptyly \acrshort{mae} na konci přistávání pro dané podmínky simulace.
+    Další experiment zjišťoval přesnost celého přistávacího manévru, kdy během každé ze simulací postupně počítal střední absolutní chybu (\acrshort{mae}) v~souřadnicích $x, y$ a rotaci $\psi$ v~každém kroku algoritmu vůči jím požadované trajektorii (ve 2 případech přímka kolmo procházející středem plošiny, ve 2 případech skloněná přímka pod stejným úhlem jako v~daném větru přistávající dron nasměrovaná proti němu). Stejně jako minulý experiment byl tento pokus proveden 50x pro každý prvek kartézského součinu metody přistávání $\times$ třídy větru. \Cref{tab:mae} shrnuje \acrshort{mae} na konci přistávání pro dané podmínky simulace.
+
+    \begin{table}
+      \centering
+      \input{tab/tab_MAE.tex}
+      \caption[Střední absolutní chyba přistávání]{Střední absolutní chyba sledování požadované trajektorie v~závislosti na větrných podmínkách a použitém algoritmu. K~v~názvu algoritmu znamená, že byl použit Kálmánův filtr, A~znamená přistání po skloněné přímce a P proporcionální regulátor rychlosti.}
+      \label{tab:mae}
+    \end{table}
+
+    Na přesnost přistávání má negativní vliv rychlost větru i jeho nárazy, kvůli zvolenému směru jsou hlavní projevy patrné v~ose $y$. Algoritmy bez Kálmánova filtru (\_\_P a \_AP) si při slabém větru bez poryvů vedou lépe než ty s~Kálmánovým filtrem, zatímco při silnějším větru mají menší \acrshort{mae} metody se skloněnou trajektorií (\_AP a \_KAP), na jejichž \acrshort{mae} nemá zvyšující se intenzita větru tak velký vliv. V~rotaci jsou vždy lepší algoritmy bez Kálmánova filtru a zdá se, že poryvy větru mají navzdory očekávání spíše pozitivní vliv na střední chybu rotace. Kromě zmíněných odlišností jsou výsledky jednotlivých algoritmů obecně srovnatelné.
   \section{Úspěšnost přistávání} \label{sec:uspesnost}
-    Během silných poryvů se stává, že se letoun v blízkosti plošiny vychýlí natolik, že se marker na plošně dostane mimo zorné pole kamery. V takový okamžik ztrácí algoritmus možnost podle obrazu odhadovat vzájemnou polohu \acrshort{uav} a značky, proto čeká 50 snímků s požadavkem na fixní polohu na případné odregulování poruchy způsobené poryvem, po kterém by mohl být marker opět viditelný, a mezitím stoupá rychlostí 0{,}3~m/s. Neobjeví-li se během této doby, považuje se pokus o dosednutí za neúspěšný a je opakován tak, že dron podle \acrshort{gps} přelétává na přibližnou polohu plošiny do výšky 10~m a sleduje, jestli se objeví na snímcích z kamery marker. Po úspěšné detekci se opět pokouší přistát. Při tomto experimentu se zaznamenával počet pokusů o dosednutí a vypočetla se jeho střední hodnota přes 50 provedených pokusů u všech dvojic metod přistávání a tříd větru. Výsledky jsou v \refskl{tab:uspesnost}{tabulce}.
-  \section{Střední doba výpočtu v jednom kroku algoritmu} \label{sec:stredniDobaVypoctu}
-    Pro posouzení výpočetní náročnosti jednotlivých metod byla v průběhu přistávání zaznamenávána také průměrná doba potřebná k výpočtu jednoho kroku algoritmu od obdržení snímku z kamery po předání řídicího požadavku letové řídicí jednotce. Krok algoritmu zahrnuje detekci fiduciárních markerů, odhad jejich polohy, přepočet polohy do vodorovné souřadné soustavy dronu, volitelně filtraci Kálmánovým filtrem, přepočet na odchylku od vybrané trajektorie a výpočet požadavku na rychlosti pomocí PID regulátorů. Střední doba výpočtu jednoho kroku algoritmu je pro jednotlivé metody uvedena v \refskl{tab:doba}{tabulce}.
-  \section{Vliv stínu na podíl nedetekovaných markerů}
-    Počítat podíl snímků, ve kterých nebyl detekován tag po zahájení přistávání.
+    Během silných poryvů se stává, že se letoun v~blízkosti plošiny vychýlí natolik, že se marker na plošině dostane mimo zorné pole kamery. V~takový okamžik ztrácí algoritmus možnost podle obrazu odhadovat vzájemnou polohu \acrshort{uav} a značky, proto čeká 50 snímků s~požadavkem na fixní polohu na případné odregulování poruchy způsobené poryvem, po kterém by mohl být marker opět viditelný, a mezitím stoupá rychlostí 0{,}3~m/s. {Neobjeví-li} se během této doby, považuje se pokus o~dosednutí za neúspěšný a je opakován tak, že dron podle \acrshort{gps} přelétává na přibližnou polohu plošiny do výšky 10~m a sleduje, jestli se objeví na snímcích z~kamery marker. Po úspěšné detekci se opět pokouší přistát. Při tomto experimentu se zaznamenával počet pokusů o~dosednutí a vypočetla se jeho střední hodnota přes 50 provedených pokusů u~všech dvojic metod přistávání a tříd větru. Výsledky jsou v~\refskl{tab:uspesnost}{tabulce}.
+
+    \begin{table}[H]
+      \centering
+      \input{tab/tab_retries.tex}
+      \caption[Úspěšnost přistávání]{Úspěšnost přistávání vyhodnocená jako průměrný počet pokusů potřebných k~úspěšnému dosednutí v~závislosti na větrných podmínkách a použítém algoritmu.}
+      \label{tab:uspesnost}
+    \end{table}
+
+    Úspěšnost přistávání se liší až při čerstvém větru, kde ji vylepšuje sklonění trajektorie i Kálmánův filtr tím, že snižují průměrný potřebný počet pokusů o~dosednutí. Při použití obou strategií je průměrný počet pokusů mírně vyšší než kdyby se Kálmánův filtr nepoužil.
+
+  \section{Doba trvání přistávání}
+    Doba, za jak dlouho \acrshort{uav} přistane souvisí s~úspěšností přistávání, protože při opakováném hlednání plošiny se ztrácí čas, a také s~přesností, jelikož rychlost klesání roste s~klesající odchylkou od požadované dráhy. Vyhodnocovaná doba se počítala od okamžiku nalezení fiduciárního markeru v~obrazu do okamžiku uvedení letadla do klidu a i v~tomto případě bylo provedeno stejných 50 opakování pro každou z~20 dvojic podmínek. Střední hodnota, extrémy a odhad rozdělení pro všechny možnosti přes všechna jejich opakování je v~grafu na \refskl{fig:dobaPristavani}{obrázku}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{img/results/trvani.pdf}
+      \caption[Doba trvání přistávání]{Doba trvání přistávání od jeho zahájení po uvedení letadla do klidu. Pro každou z~kombinací algoritmu (každý má přiřazenou barvu) a třídy větru (skupiny na vodorovné ose) je vyznačena střední hodnota doby trvání, extrémy a odhad jejího rozdělení.}
+      \label{fig:dobaPristavani}
+    \end{figure}
+
+    Ve výsledcích je patrné snížení průměru doby přistávání u~metody se skloněnou trajektorií bez Kálmánova filtru a za většího větru i u~obou metod s~Kálmánovým filtrem, jak bylo očekáváno dle průměrného počtu pokusů o~přistání (\refskl{sec:uspesnost}{podkapitola}), pokusy jsou také patrné v~rozdělení časů v~grafu (\cref{fig:dobaPristavani}). Metody s~Kálmánovým filtrem za mírného větru přistávají průměrně pomaleji, za čerstvého větru a bezvětří jsou lepší než základní metoda a mají za čerstvého větru mají lepší rozdělení časů napříč pokusy, jež je koncentrováno více v~nižších hodnotách.
+    
+
+  \section{Střední doba výpočtu v~jednom kroku algoritmu} \label{sec:stredniDobaVypoctu}
+    Pro posouzení výpočetní náročnosti jednotlivých metod byla v~průběhu přistávání zaznamenávána také průměrná doba potřebná k~výpočtu jednoho kroku algoritmu od obdržení snímku z~kamery po předání řídicího požadavku letové řídicí jednotce. Krok algoritmu zahrnuje detekci fiduciárních markerů, odhad jejich polohy, přepočet polohy do vodorovné souřadné soustavy dronu, volitelně filtraci Kálmánovým filtrem, přepočet na odchylku od vybrané trajektorie a výpočet požadavku na rychlosti v~jednotlivých osách letadla pomocí PID regulátorů. Průměrná (přes pokusy) střední (přes jednotlivé kroky během přistávání) doba výpočtu jednoho kroku přistávacího algoritmu je pro dané metody uvedena v~\refskl{tab:dobaKroku}{tabulce}.
+
+    \begin{table}
+      \centering
+      \input{tab/tab_dobaKroku.tex}
+      \caption[Průměrná střední doba jednoho kroku algoritmu]{Průměrná střední doba jednoho kroku přistávacího algoritmu vážená počtem kroků během pokusu.}
+      \label{tab:dobaKroku}
+    \end{table}
+
+    Se složitostí algoritmu roste i čas potřebný k~provedení jednoho jeho kroku, při sklonění trajektorie se krok oproti základnímu algoritmu zpomalí o~0{,}4~ms, při použití Kálmánova filtru je nárůst asi $2/3$ a využijí-li se obě možnosti, čas potřebný k~výpočtu naroste o~$15{,}1$~ms na více než dvojnásobek.
+  \section{Vliv stínu na podíl nedetekovaných markerů} \label{sec:stin}
+    
   % \section{Ověření nezávislosti výsledků na směru větru}
   %   Aby se ušetřil počet pokusů, ověřil bych jen za silného větru, zda se nějak liší průběh přistávání.
   % \section{Ověření nezávislosti výsledků na vzájemné počáteční poloze dronu a plošiny}

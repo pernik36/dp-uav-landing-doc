@@ -21,7 +21,7 @@
 		\node [style=none] (14) at (16.75, -4) {};
 		\node [style=soubor, label={below:vysledky.yaml}] (16) at (-10.25, 5) {};
 		\node [style=cizi] (17) at (-11, -16) {Detektor};
-		\node [style=cizi] (18) at (-10.25, 0) {\v Zive};
+		\node [style=cizi] (18) at (-10.25, 0) {\v Ziv\v e};
 		\node [style=none] (19) at (-10.75, -1.75) {};
 		\node [style=none] (20) at (-9.75, -1.75) {};
 		\node [style=none] (21) at (-10.25, -1.75) {};
@@ -72,7 +72,7 @@
 		\draw [style=vystup, bend right=15] (11) to node [below, sloped] {v\'ysledek} (9);
 		\draw [style=vystup, bend left=345] (12) to node [above, sloped] {obraz} (17);
 		\draw [style=vystup, bend right=15] (17) to node [below, sloped, align=center] {poloha,\\ozna\v cen\'y obraz} (12);
-		\draw [style=vystup, bend left=15] (11) to node [above, sloped] {\v rizeni} (6);
+		\draw [style=vystup, bend left=15] (11) to node [above, sloped] {\v r\'izen\'i} (6);
 		\draw [style=vystup] (6) to node [below, sloped] {senzory} (11);
 		\draw [style=vystup] (0) to (18);
 		\draw (19.center)
