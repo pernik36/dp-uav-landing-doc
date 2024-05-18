@@ -5,7 +5,7 @@
 
     Součástí těchto metod je často algoritmus pro plánování trajektorie, který vede trasu dronu tak, aby se vyhnul detekovaným překážkám nebo oblastem, ve kterých by nebylo vhodné letět (např. v~blízkosti osob, aby byla zajištěna jejich bezpečnost). \cite{Kakaletsis2022}
 
-    Metody s~kooperativními cíli přistávání lze dále rozlišovat podle způsobu detekce a rozpoznávání daného markeru, což je považováno za nejdůležitější krok celého přitsávání. Existují klasické metody založené na příznacích v~obrazu, jež používají uměle vytvořené přesně definované značky s~geometrickým vzorem nebo takové, které uplatňují nějakou geometrickou závislost, přičemž způsob návrhu může výrazně ovlivnit schopnosti autonomního přistání \acrshort{uav} (příklady značek jsou uvedeny v~\refskl{chap:pad}{kapitole}). \cite{Xin2022}
+    Metody s~kooperativními cíli přistávání lze dále rozlišovat podle způsobu detekce a rozpoznávání daného markeru, což je považováno za nejdůležitější krok celého přistávání. Existují klasické metody založené na příznacích v~obrazu, jež používají uměle vytvořené přesně definované značky s~geometrickým vzorem nebo takové, které uplatňují nějakou geometrickou závislost, přičemž způsob návrhu může výrazně ovlivnit schopnosti autonomního přistání \acrshort{uav} (příklady značek jsou uvedeny v~\refskl{chap:pad}{kapitole}). \cite{Xin2022}
 
     Klasické metody používají například algoritmy pro extrakci klíčových bodů jako jsou SIFT, SURF nebo ORB \cite{Saavedra2021} nebo složitější algoritmy navržené přímo na míru pro dané markery, sestávající z~obecnějších a jednodušších stavebních bloků (např. \cite{apriltag3}, \cref{chap:detection}). 
     
@@ -33,11 +33,10 @@
 
     \section{Obecné vlastnosti implementovaných metod} \label{sec:generalalg}
     Bez ohledu na metodu jsou některé činnosti, které jsou prováděny před samotným přistáváním a v~jeho průběhu, podmínky a vlivy stejné. Tato podkapitola zachycuje takové společné rysy metod implementovaných pro simulaci v~této práci. Činnosti a jejich sled ukazuje diagram v~\refskl{fig:algObecny}{obrázku}.
-    %TODO: Přehledový obrázek obecného algoritmu.
     \begin{figure}
         \centering
-        \includegraphics[height=\textwidth,angle=-90,origin=c]{img/algs/genAlg.jpg}
-        \caption[Činnosti obecného přistávacího algoritmu]{Činnosti obecného přistávacího algoritmu a jejich posloupnost.} %Pouze ilustrační obrázek, bude překreslen
+        \ctikzfig{img/algs/genAlg}
+        \caption[Činnosti obecného přistávacího algoritmu]{Činnosti obecného přistávacího algoritmu a jejich posloupnost.}
         \label{fig:algObecny}
     \end{figure}
     
@@ -74,12 +73,12 @@
 
         Vzájemná poloha letadla a středu značky je odhadována detektorem zvolených fiduciárních markerů, tedy AprilTagů, na základě obrazových dat z~kamery. Způsob odhadování polohy je podrobněji popsán v~\refskl{chap:detection}{kapitole}. Aby bylo možné relativní vzdálenost určit správně a ve správném měřítku, musí být známá kalibrace kamery a rozměr značky.
 
-        \refskl{eq:vz}{Vztah} byl tímto způsobem stanoven, aby funkce rychlosti byla hladká a v~případě odchylky ji bylo možné korigovat před tím, než fiduciární značka opustí zorné pole kamery a nebude tak možné dále odhadovat polohu plošiny. Pokud by k~tomu i tak došlo (např. vlivem silného poryvu větru), dron bude po omezenou dobu (max. 50 snímků bez tagu) stoupat konstantní rychlostí danou v~konfiguračním souboru (výchozí hodnota je $v_z=0{,}3~\mathrm{m/s}^2$) a čekat na snímek z~kamery, který by obsahoval tag. Nedojde-li k~tomu včas, pokus o~přistání se opakuje od přeletu nad plošinu. % TODO: Dodat číslo kroku v diagramu
+        \refskl{eq:vz}{Vztah} byl tímto způsobem stanoven, aby funkce rychlosti byla hladká a v~případě odchylky ji bylo možné korigovat před tím, než fiduciární značka opustí zorné pole kamery a nebude tak možné dále odhadovat polohu plošiny. Pokud by k~tomu i tak došlo (např. vlivem silného poryvu větru), dron bude po omezenou dobu (max. 50 snímků bez tagu) stoupat konstantní rychlostí danou v~konfiguračním souboru (výchozí hodnota je $v_z=0{,}3~\mathrm{m/s}^2$) a čekat na snímek z~kamery, který by obsahoval tag. Nedojde-li k~tomu včas, pokus o~přistání se opakuje od přeletu nad plošinu.
         
     \section{Přistávání po svislé přímce s~využitím Kálmánova filtru} \label{sec:kalmanoffboardpid}
         Tento algoritmus je přímo odvozený od předchozího, stejně jako u~něj je požadována nulová vodorovná vzdálenost dronu a plošiny během přistávání a výpočet svislé rychlosti se také neliší. Rozdíl spočívá v~tom, že je sestaven jednoduchý dynamický model letounu, který se následně využívá pro predikci stavu v~Kálmánově filtru \cite{Kalman1960}, \cite{Kalman1961} a měření polohy získaná z~detektoru, která jsou zatížená šumem, se pak filtrují, čímž je dosaženo vyšší přesnosti odhadu polohy. Filtrované odhady se dále používají stejným způsobem jako v~předchozí metodě a je podle nich řízena vodorovná rychlost \acrshort{uav}.
 
-        Pro tyto účely byl letoun modelován lineárním stochastickým systémem diskrétním v~čase jako hmotný bod se směrem rotace, jehož stav je dán polohou v~3D prostoru a rychlostí v~příslušných souřadnicích, uvažovala se také rotace $\psi$ kolem osy $z$ úhlová rychlost $\dot \psi$ v~téže ose. Vstupem systému je požadované zrychlení (nebo úhlové zrychlení) v~jednotlivých proměnných, které je dané řízením dronu. Kromě vstupu na systém dále působí šum s~normálním rozdělením $\mathbf{w} \sim \mathcal{N}(\mathbf{0},\mathbf{Q})$ s~kovarianční maticí $\mathbf{Q}$, která byla určena řádově podobně jako v~\cite{Kojima2015} a dále podle obvyklých kovariancí chyb \acrshort{imu}. %TODO: Dodat zdroj obvvyklých kovariancí
+        Pro tyto účely byl letoun modelován lineárním stochastickým systémem diskrétním v~čase jako hmotný bod se směrem rotace, jehož stav je dán polohou v~3D prostoru a rychlostí v~příslušných souřadnicích, uvažovala se také rotace $\psi$ kolem osy $z$ úhlová rychlost $\dot \psi$ v~téže ose. Vstupem systému je požadované zrychlení (nebo úhlové zrychlení) v~jednotlivých proměnných, které je dané řízením dronu. Kromě vstupu na systém dále působí šum s~normálním rozdělením $\mathbf{w} \sim \mathcal{N}(\mathbf{0},\mathbf{Q})$ s~kovarianční maticí $\mathbf{Q}$, která byla určena řádově podobně jako v~\cite{Kojima2015} a dále podle kovariancí chyb \acrshort{imu} uvedených v katalogovém listu BMI055 \cite{imu}.
         Vývoj stavu potom určuje \cref{eq:kalmanx}.
 
         Měření z~uvedeného modelu jsou přímo 3 polohové souřadnice ($x, y, z$) a rotace $\psi$. I~měření je navíc zatíženo náhodnou chybou modelovanou náhodnou veličinou s~normálním rozdělením $\mathbf{v} \sim \mathcal{N}(\mathbf{0},\mathbf{R})$. Jeho kovarianční matice $\mathbf{R}$ byla odhadnuta jako výběrová kovarianční matice měření odchylek relativní polohy měřené detektorem od skutečné relativní polohy v~simulátoru. Měření $\mathbf z$ potom popisuje \cref{eq:kalmanz}.

@@ -1,4 +1,5 @@
-\chapter{Experimenty a vyhodnocení} \label{chap:eval}
+\chapter{Experimenty a vyhodnocení} \label{chap:eval} %TODO: poladit popisy floatů, aby byly kompletní (názvy algoritmů)
+%TODO: doplnit referenci na zkratky algoritmů a domplnit je do kapitoly o algoritmech
   V~navrženém systému byly implementovány a odsimulovány 4 vybrané metody přistávání (\cref{chap:algs}), na nichž byly provedeny experimenty popsané v~této kapitole, které sloužily primárně ke zjištění rozdílů mezi implementovanými algoritmy podle různých hledisek. Během několikrát opakované simulace byly sledovány určité ukazatele, které byly zaznamenávány a statisticky zpracovány, konkrétní provedení je vždy uvedeno v~příslušné podkapitole daného experimentu. Pro provedení experimentů \cref*{sec:presnostPristani,sec:presnostPristavani,sec:uspesnost} bylo zvoleno 5 různých tříd větrných podmínek (bezvětří, slabý vítr, slabý vítr s~poryvy, čerstvý vítr, čerstvý vítr s~poryvy). Nastavení simulačních parametrů v~jednotlivých třídách shrnuje \cref{tab:tridyVetru}.
   \begin{table}[H]
     \centering
@@ -38,7 +39,7 @@
 
     Odchylky po uvedení letadla do klidu jsou výrazně větší, protože tření mezi plošinou a letadlem není po dotyku dostatečné ani při nastavení vysokého koeficientu tření obou ploch v~simulátoru a při doběhu motorů před deaktivací je letadlo snášeno ve směru větru po plošině. Výsledkem je zvyšující se polohová odchylka v~1 směru pro rostoucí rychlost větru patrná u~všech metod přistávání. Pro úhlovou odchylku platí zvětšování rozdílů mezi jednotlivými případy přistávání, ale posun v~jednom směru není příliš patrný. Výsledky všech metod jsou srovnatelné, ale metody, které využívají skloněnou trajektorii (\_AP a KAP) mají ve většině případů průměrnou odchylku bližší 0 než ostatní metody, jeden takový případ ukazuje i \cref{fig:presnostPristani}.
 
-    \begin{figure}
+    \begin{figure}[H]
       \centering
       \begin{subfigure}[b]{0.495\textwidth}
         \includegraphics[width=\textwidth]{img/results/__P1_vitr2_pristani.pdf}
@@ -90,7 +91,9 @@
     
 
   \section{Střední doba výpočtu v~jednom kroku algoritmu} \label{sec:stredniDobaVypoctu}
-    Pro posouzení výpočetní náročnosti jednotlivých metod byla v~průběhu přistávání zaznamenávána také průměrná doba potřebná k~výpočtu jednoho kroku algoritmu od obdržení snímku z~kamery po předání řídicího požadavku letové řídicí jednotce. Krok algoritmu zahrnuje detekci fiduciárních markerů, odhad jejich polohy, přepočet polohy do vodorovné souřadné soustavy dronu, volitelně filtraci Kálmánovým filtrem, přepočet na odchylku od vybrané trajektorie a výpočet požadavku na rychlosti v~jednotlivých osách letadla pomocí PID regulátorů. Průměrná (přes pokusy) střední (přes jednotlivé kroky během přistávání) doba výpočtu jednoho kroku přistávacího algoritmu je pro dané metody uvedena v~\refskl{tab:dobaKroku}{tabulce}.
+    Pro posouzení výpočetní náročnosti jednotlivých metod byla v~průběhu přistávání zaznamenávána také průměrná doba potřebná k~výpočtu jednoho kroku algoritmu od obdržení snímku z~kamery po předání řídicího požadavku letové řídicí jednotce. Krok algoritmu zahrnuje detekci fiduciárních markerů, odhad jejich polohy, přepočet polohy do vodorovné souřadné soustavy dronu, volitelně filtraci Kálmánovým filtrem, přepočet na odchylku od vybrané trajektorie a výpočet požadavku na rychlosti v~jednotlivých osách letadla pomocí PID regulátorů. Průměrná (přes pokusy) střední (přes jednotlivé kroky během přistávání) %
+    %TODO: text pod tabulkou
+    doba výpočtu jednoho kroku přistávacího algoritmu je pro dané metody uvedena v~\refskl{tab:dobaKroku}{tabulce}.
 
     \begin{table}
       \centering
