@@ -70,14 +70,14 @@
     \begin{table}[H]
       \centering
       \input{tab/tab_retries.tex}
-      \caption[Úspěšnost přistávání]{Úspěšnost přistávání vyhodnocená jako průměrný počet pokusů potřebných k~úspěšnému dosednutí v~závislosti na větrných podmínkách a použítém algoritmu. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti. Zkratka pro algoritmus je alg. a pro poryvy p.}
+      \caption[Úspěšnost přistávání]{Úspěšnost přistávání vyhodnocená jako průměrný počet pokusů potřebných k~úspěšnému dosednutí v~závislosti na větrných podmínkách a použitém algoritmu. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti. Zkratka pro algoritmus je alg. a pro poryvy p.}
       \label{tab:uspesnost}
     \end{table}
 
     Úspěšnost přistávání se liší až při čerstvém větru, kde ji vylepšuje sklonění trajektorie i Kálmánův filtr tím, že snižují průměrný potřebný počet pokusů o~dosednutí. Při použití obou strategií je průměrný počet pokusů mírně vyšší než kdyby se Kálmánův filtr nepoužil.
 
   \section{Doba trvání přistávání}
-    Doba, za jak dlouho \acrshort{uav} přistane souvisí s~úspěšností přistávání, protože při opakováném hlednání plošiny se ztrácí čas, a také s~přesností, jelikož rychlost klesání roste s~klesající odchylkou od požadované dráhy. Vyhodnocovaná doba se počítala od okamžiku nalezení fiduciárního markeru v~obrazu do okamžiku uvedení letadla do klidu a i v~tomto případě bylo provedeno stejných 50 opakování pro každou z~20 dvojic podmínek. Střední hodnota, extrémy a odhad rozdělení pro všechny možnosti přes všechna jejich opakování je v~grafu na \refskl{fig:dobaPristavani}{obrázku}.
+    Doba, za jak dlouho \acrshort{uav} přistane souvisí s~úspěšností přistávání, protože při opakovaném hledání plošiny se ztrácí čas, a také s~přesností, jelikož rychlost klesání roste s~klesající odchylkou od požadované dráhy. Vyhodnocovaná doba se počítala od okamžiku nalezení fiduciárního markeru v~obrazu do okamžiku uvedení letadla do klidu a i v~tomto případě bylo provedeno stejných 50 opakování pro každou z~20 dvojic podmínek. Střední hodnota, extrémy a odhad rozdělení pro všechny možnosti přes všechna jejich opakování je v~grafu na \refskl{fig:dobaPristavani}{obrázku}.
 
     \begin{figure}[H]
       \centering
@@ -105,7 +105,7 @@
   \section{Vliv stínu na podíl nedetekovaných markerů} \label{sec:stin}
     Vzhledem k~tomu, že rohy používaného AprilTagu, pomocí kterých se odhaduje jeho poloha vůči kameře, jsou umístěny mezi 2. a 3. vrstvou buněk, počítají-li se od kraje, je nepravděpodobné, že by stín měl výrazný vliv na přesnost odhadu polohy, pokud je značka detekována. Neočekává se proto, že by vlivem nepřesností odhadu polohy způsobených stínem bylo ovlivněno samotné přistávání. Zaměření tohoto experimentu bylo tedy zjistit jaký vliv má zastínění na úspěšnost detekce markerů. Pro pokus byly zvoleny 3 míry zastínění (A: 0~\%, 50~\% a E: 100~\%), přičemž částečné zastínění mělo 3 různé sklony stínu vůči jedné z~vodorovných os markeru (B: 0$^\circ$, C: 35$^\circ$ a D: 125$^\circ$).
 
-    Experiment proběhl s~podporou navrženého systému, pro nějž byl implementován zvláštní řídicí algoritmus pro tento pokus, který přeletěl nad plošinu a v~jejím čtvercovém okolí o~straně 3~m volil náhodné polohy a náhodná natočení, mezi kterými \acrshort{uav} přelátavalo. Při tom byl marker na plošině pozorován z~různých úhlů, čímž tag zaujímal polohy rozprostřené po většině zorného pole kamery s~různou rotací. Přijaté snímky se v~80~\% případů zahazovaly a u~zbylých se vyhodnocovalo, zda v~něm byl marker detekován. To se provádělo v~různých výškách s~rozestupem 0{,}25~m mezi 9{,}5~m a 15~m nad zemí vždy než bylo zachyceno celkem alespoň 400 snímků (bez ohledu na úspěšnost detekce) a poté se přeletělo o~úroveň výše. Postup se opakoval, dokud nebyl prozkoumán celý interval výšek. 
+    Experiment proběhl s~podporou navrženého systému, pro nějž byl implementován zvláštní řídicí algoritmus pro tento pokus, který přeletěl nad plošinu a v~jejím čtvercovém okolí o~straně 3~m volil náhodné polohy a náhodná natočení, mezi kterými \acrshort{uav} přelétávalo. Při tom byl marker na plošině pozorován z~různých úhlů, čímž tag zaujímal polohy rozprostřené po většině zorného pole kamery s~různou rotací. Přijaté snímky se v~80~\% případů zahazovaly a u~zbylých se vyhodnocovalo, zda v~něm byl marker detekován. To se provádělo v~různých výškách s~rozestupem 0{,}25~m mezi 9{,}5~m a 15~m nad zemí vždy než bylo zachyceno celkem alespoň 400 snímků (bez ohledu na úspěšnost detekce) a poté se přeletělo o~úroveň výše. Postup se opakoval, dokud nebyl prozkoumán celý interval výšek. 
 
     Takový pokus se prováděl ve 4 opakováních pro každý z~5 druhů zastínění a zjištěné počty všech snímků a snímků bez detekce byly v~odpovídajících si výškách sečteny. Podíl počtu použitých snímků s~úspěšně detekovaným tagem a celkového počtu použitých snímků byl vyhodnocen a v~závislosti na výšce pro různá stínění zobrazen v~grafu na \refskl{fig:detekceStiny}{obrázku}.
 

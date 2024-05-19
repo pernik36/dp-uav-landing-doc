@@ -21,6 +21,6 @@
   
   Ve verzi 3 se řazení bodů provádí podle kvadrantu, ve kterém se bod nachází a sklonu průvodiče. Není tak nutné počítat explicitně úhel. \cite{apriltag3}
 
-  \subparagraph{Rychlé dekódování} tagů v~nalezených čtyřúhelnících probíhá tak, že se nejprve vyrovnají (pomocí homografie vypočtené ze souřadnic polohy jejich rohů) a hledá se nejbližší kód z~dané rodiny značek pro každou ze 4 možných rotací. Omezí-li se počet odlišných bitů na 2, je možné předpočítat všechny tagy maximálně 2 bity vzdálené od validního tagu a zaznamenat je do hashovací tabulky. Při detekci se z~tabulky jen vybere příslušná hodnota, nebo se detekce zamítne. \cite{apriltag2}
+  \subparagraph{Rychlé dekódování} tagů v~nalezených čtyřúhelnících probíhá tak, že se nejprve vyrovnají (pomocí homografie vypočtené ze souřadnic polohy jejich rohů) a hledá se nejbližší kód z~dané rodiny značek pro každou ze 4 možných rotací. Omezí-li se počet odlišných bitů na 2, je možné předpočítat všechny tagy maximálně 2 bity vzdálené od validního tagu a zaznamenat je do hašovací tabulky. Při detekci se z~tabulky jen vybere příslušná hodnota, nebo se detekce zamítne. \cite{apriltag2}
   
   Verze 3 zavádí bilineární interpolaci buněk tagu a zvyšuje ostrost za účelem zlepšení detekce malých značek. \cite{apriltag3}
