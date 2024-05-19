@@ -1,6 +1,5 @@
-\chapter{Experimenty a vyhodnocení} \label{chap:eval} %TODO: poladit popisy floatů, aby byly kompletní (názvy algoritmů)
-%TODO: doplnit referenci na zkratky algoritmů a domplnit je do kapitoly o algoritmech
-  V~navrženém systému byly implementovány a odsimulovány 4 vybrané metody přistávání (\cref{chap:algs}), na nichž byly provedeny experimenty popsané v~této kapitole, které sloužily primárně ke zjištění rozdílů mezi implementovanými algoritmy podle různých hledisek. Během několikrát opakované simulace byly sledovány určité ukazatele, které byly zaznamenávány a statisticky zpracovány, konkrétní provedení je vždy uvedeno v~příslušné podkapitole daného experimentu. Pro provedení experimentů \cref*{sec:presnostPristani,sec:presnostPristavani,sec:uspesnost} bylo zvoleno 5 různých tříd větrných podmínek (bezvětří, slabý vítr, slabý vítr s~poryvy, čerstvý vítr, čerstvý vítr s~poryvy). Nastavení simulačních parametrů v~jednotlivých třídách shrnuje \cref{tab:tridyVetru}.
+\chapter{Experimenty a vyhodnocení} \label{chap:eval}
+  V~navrženém systému byly implementovány a odsimulovány 4 vybrané metody přistávání (\_\_P, \_AP, K\_P a KAP, \cref{chap:algs}), na nichž byly provedeny experimenty popsané v~této kapitole, které sloužily primárně ke zjištění rozdílů mezi implementovanými algoritmy podle různých hledisek. Během několikrát opakované simulace byly sledovány určité ukazatele, které byly zaznamenávány a statisticky zpracovány, konkrétní provedení je vždy uvedeno v~příslušné podkapitole daného experimentu. Pro provedení experimentů \cref*{sec:presnostPristani,sec:presnostPristavani,sec:uspesnost} bylo zvoleno 5 různých tříd větrných podmínek (bezvětří, slabý vítr, slabý vítr s~poryvy, čerstvý vítr, čerstvý vítr s~poryvy). Nastavení simulačních parametrů v~jednotlivých třídách shrnuje \cref{tab:tridyVetru}.
   \begin{table}[H]
     \centering
     \begin{tabular}{@{}lllll@{}}
@@ -24,7 +23,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.9\textwidth]{img/results/presnostDotyku.pdf}
-      \caption[Chyba před dosednutím]{Chyba polohy a rotace letadla před požadavkem na dosednutí v~závislosti na použité metodě přistávání a třídě větru. Metody jsou označené barevně a třídy větru jsou od sebe odděleny prostorově. Každý graf zobrazuje střední hodnotu, oba extrémy a odhad rozdělení dané chyby.}
+      \caption[Chyba před dosednutím]{Chyba polohy a rotace letadla před požadavkem na dosednutí v~závislosti na použité metodě přistávání a třídě větru. Metody jsou označené barevně a třídy větru jsou od sebe odděleny prostorově. Každý graf zobrazuje střední hodnotu, oba extrémy a odhad rozdělení dané chyby. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti.}
       \label{fig:dosednutiViolin}
     \end{figure}
 
@@ -33,7 +32,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.9\textwidth]{img/results/presnostPristani.pdf}
-      \caption[Chyba přistání]{Chyba polohy a rotace letadla po jeho uvedení do klidu v~závislosti na použité metodě přistávání a třídě větru. Metody jsou označené barevně a třídy větru jsou od sebe odděleny prostorově. Každý graf zobrazuje střední hodnotu, oba extrémy a odhad rozdělení dané chyby.}
+      \caption[Chyba přistání]{Chyba polohy a rotace letadla po jeho uvedení do klidu v~závislosti na použité metodě přistávání a třídě větru. Metody jsou označené barevně a třídy větru jsou od sebe odděleny prostorově. Každý graf zobrazuje střední hodnotu, oba extrémy a odhad rozdělení dané chyby. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti.}
       \label{fig:pristaniViolin}
     \end{figure}
 
@@ -50,7 +49,7 @@
         \includegraphics[width=\textwidth]{img/results/KAP1_vitr2_pristani.pdf}
         \caption{KAP, mírný s~poryvy}
       \end{subfigure}
-      \caption[Příklad porovnání přistání]{Porovnání míst přistání, jejich centroidů a kovariančních elips pro dva příklady algoritmů za mírného větru.}
+      \caption[Příklad porovnání přistání]{Porovnání míst přistání, jejich centroidů a kovariančních elips pro dva příklady algoritmů za mírného větru. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti.}
       \label{fig:presnostPristani}
     \end{figure}
   
@@ -60,7 +59,7 @@
     \begin{table}
       \centering
       \input{tab/tab_MAE.tex}
-      \caption[Střední absolutní chyba přistávání]{Střední absolutní chyba sledování požadované trajektorie v~závislosti na větrných podmínkách a použitém algoritmu. K~v~názvu algoritmu znamená, že byl použit Kálmánův filtr, A~znamená přistání po skloněné přímce a P proporcionální regulátor rychlosti.}
+      \caption[Střední absolutní chyba přistávání]{Střední absolutní chyba sledování požadované trajektorie v~závislosti na větrných podmínkách a použitém algoritmu. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistání po skloněné přímce a P proporcionální regulátor rychlosti.}
       \label{tab:mae}
     \end{table}
 
@@ -71,7 +70,7 @@
     \begin{table}[H]
       \centering
       \input{tab/tab_retries.tex}
-      \caption[Úspěšnost přistávání]{Úspěšnost přistávání vyhodnocená jako průměrný počet pokusů potřebných k~úspěšnému dosednutí v~závislosti na větrných podmínkách a použítém algoritmu.}
+      \caption[Úspěšnost přistávání]{Úspěšnost přistávání vyhodnocená jako průměrný počet pokusů potřebných k~úspěšnému dosednutí v~závislosti na větrných podmínkách a použítém algoritmu. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti. Zkratka pro algoritmus je alg. a pro poryvy p.}
       \label{tab:uspesnost}
     \end{table}
 
@@ -83,7 +82,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{img/results/trvani.pdf}
-      \caption[Doba trvání přistávání]{Doba trvání přistávání od jeho zahájení po uvedení letadla do klidu. Pro každou z~kombinací algoritmu (každý má přiřazenou barvu) a třídy větru (skupiny na vodorovné ose) je vyznačena střední hodnota doby trvání, extrémy a odhad jejího rozdělení.}
+      \caption[Doba trvání přistávání]{Doba trvání přistávání od jeho zahájení po uvedení letadla do klidu. Pro každou z~kombinací algoritmu (každý má přiřazenou barvu) a třídy větru (skupiny na vodorovné ose) je vyznačena střední hodnota doby trvání, extrémy a odhad jejího rozdělení. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti.}
       \label{fig:dobaPristavani}
     \end{figure}
 
@@ -98,12 +97,30 @@
     \begin{table}
       \centering
       \input{tab/tab_dobaKroku.tex}
-      \caption[Průměrná střední doba jednoho kroku algoritmu]{Průměrná střední doba jednoho kroku přistávacího algoritmu vážená počtem kroků během pokusu.}
+      \caption[Průměrná střední doba jednoho kroku algoritmu]{Průměrná střední doba jednoho kroku přistávacího algoritmu vážená počtem kroků během pokusu. K~v~názvu algoritmu znamená použití Kálmánova filtru, A~znamená přistávání po skloněné přímce a P proporcionální regulátor rychlosti.}
       \label{tab:dobaKroku}
     \end{table}
 
     Se složitostí algoritmu roste i čas potřebný k~provedení jednoho jeho kroku, při sklonění trajektorie se krok oproti základnímu algoritmu zpomalí o~0{,}4~ms, při použití Kálmánova filtru je nárůst asi $2/3$ a využijí-li se obě možnosti, čas potřebný k~výpočtu naroste o~$15{,}1$~ms na více než dvojnásobek.
-  \section{Vliv stínu na podíl nedetekovaných markerů} \label{sec:stin}%TODO: stiny
+  \section{Vliv stínu na podíl nedetekovaných markerů} \label{sec:stin}
+    Vzhledem k~tomu, že rohy používaného AprilTagu, pomocí kterých se odhaduje jeho poloha vůči kameře, jsou umístěny mezi 2. a 3. vrstvou buněk, počítají-li se od kraje, je nepravděpodobné, že by stín měl výrazný vliv na přesnost odhadu polohy, pokud je značka detekována. Neočekává se proto, že by vlivem nepřesností odhadu polohy způsobených stínem bylo ovlivněno samotné přistávání. Zaměření tohoto experimentu bylo tedy zjistit jaký vliv má zastínění na úspěšnost detekce markerů. Pro pokus byly zvoleny 3 míry zastínění (A: 0~\%, 50~\% a E: 100~\%), přičemž částečné zastínění mělo 3 různé sklony stínu vůči jedné z~vodorovných os markeru (B: 0$^\circ$, C: 35$^\circ$ a D: 125$^\circ$).
+
+    Experiment proběhl s~podporou navrženého systému, pro nějž byl implementován zvláštní řídicí algoritmus pro tento pokus, který přeletěl nad plošinu a v~jejím čtvercovém okolí o~straně 3~m volil náhodné polohy a náhodná natočení, mezi kterými \acrshort{uav} přelátavalo. Při tom byl marker na plošině pozorován z~různých úhlů, čímž tag zaujímal polohy rozprostřené po většině zorného pole kamery s~různou rotací. Přijaté snímky se v~80~\% případů zahazovaly a u~zbylých se vyhodnocovalo, zda v~něm byl marker detekován. To se provádělo v~různých výškách s~rozestupem 0{,}25~m mezi 9{,}5~m a 15~m nad zemí vždy než bylo zachyceno celkem alespoň 400 snímků (bez ohledu na úspěšnost detekce) a poté se přeletělo o~úroveň výše. Postup se opakoval, dokud nebyl prozkoumán celý interval výšek. 
+
+    Takový pokus se prováděl ve 4 opakováních pro každý z~5 druhů zastínění a zjištěné počty všech snímků a snímků bez detekce byly v~odpovídajících si výškách sečteny. Podíl počtu použitých snímků s~úspěšně detekovaným tagem a celkového počtu použitých snímků byl vyhodnocen a v~závislosti na výšce pro různá stínění zobrazen v~grafu na \refskl{fig:detekceStiny}{obrázku}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics{img/results/detekce_stiny.pdf}
+      \caption[Úspěšnost detekce zastíněného fiduciárního markeru]{Úspěšnost detekce fiduciárního markeru na přistávací plošině zachyceného kamerou bezpilotního letadla v~závislosti na výšce letu $h$ nad povrchem. Marker měl 3 různé míry zastínění (0\%, 50\% a 100\%) a při částečném zastínění 3 různé sklony stínu vůči ose markeru (0$^\circ$, 35$^\circ$ a 125$^\circ$), celkem tedy 5 různých zastínění vyznačených barvou i tvarem značek v~grafu.}
+      \label{fig:detekceStiny}
+    \end{figure}
+
+    Bylo zjištěno, že na úspěšnost detekce má vliv sklon stínu i podíl zastíněné části a že ve všech případech s~rostoucí výškou až na náhodné výjimky postupně klesá. V~10~m začíná pokles úspěšnosti detekce markeru s~neskloněným 50~\% zastíněním (stín B), o~$1/4$~m později se přidává 50~\% zastínění s~35~$^\circ$ sklonem (stín C) a na další úrovni, v~10{,}5~m, začíná klesat úspěšnost detekce i v~případě posledních dvou zastínění (50\% 125$^\circ$ a 100\%), u~nezastíněných tagů poklesne pod 100~\% úspěšnost detekce poprvé až v~10{,}75~m. Přistávání v~této práci probíhalo z~10~m, takže zastínění by na něj nemělo významný vliv.
+
+    Podobný trend je v~datech patrný téměř ve všech výškách, kdy se o~místo nejhůře detekovatelného tagu střídá většinou ten se stínem B a C a naopak nejspolehlivěji je detekován tag na plošině bez jakéhokoli stínu, kterému v~mnoha případech hlavně v~nižších z~testovaných výšek sekunduje druhý případ homogenního zastínění, tedy stín E s~podílem 100~\% zastíněné plochy, ale navzdory očekávání při vyšších výškách je stín E (a také B a C) často překonáván stínem D. Tagy se stínem D jsou obvykle detekovány s~výrazně vyšší úspěšností než zbylé 2 se stejným poměrem stínu (B a C) a na hranicích možností detekčního algoritmu (přibližně pří výšce nad 13~m) překonává s~úspěšností i nezastíněné tagy. Pravděpodobně se jedná o~interferenci s~konkrétním uspořádáním použité značky.
+
+    Pokud by se uvažovalo pásmo úspěšnosti nad 80~\%, největší rozdíly v~něm byly asi 18~\% mezi značkou bez stínu a značkou z~50~\% zastíněnou, výšky s~odpovídající úspěšností byly od sebe v~závislosti na zastínění vzdálené 0{,}75~m. Největší rozdíl v~úspěšnostech na dané výšce z~celého intervalu činil asi 40~\% a největší rozdíl ve vzdálenostech, ze kterých byly pozorovány 2 různě zastíněné markery s~odpovídající úspěšností byl 1~m.
     
   % \section{Ověření nezávislosti výsledků na směru větru}
   %   Aby se ušetřil počet pokusů, ověřil bych jen za silného větru, zda se nějak liší průběh přistávání.
